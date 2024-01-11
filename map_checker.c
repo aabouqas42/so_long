@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 16:24:16 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/11 22:22:50 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**copy_map(char *map_path)
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		show_error("cannot open file !\n");
-	size = map_size(fd);
+	size = map_size(fd) + 1;
 	map = malloc (size * sizeof(char *));
 	if (map == NULL)
 		exit (-1);
@@ -41,17 +41,14 @@ char	**copy_map(char *map_path)
 	i = 0;
 	while (i < size)
 	{
-		map[i] = ft_strdup(get_next_line(fd));
-		if (map[i] == NULL)
-			while (i--)
-				free (map[i]);
+		map[i] = get_next_line(fd);
 		i++;
 	}
 	close (fd);
-	return (map[i] = 0, map);
+	return (map);
 }
 
-int	check_rows(char *row)
+void	check_rows(char *row)
 {
 	int	i;
 
@@ -59,13 +56,12 @@ int	check_rows(char *row)
 	while (row[i] && row[i] != '\n')
 	{
 		if (row[i] != '1')
-			return (-1);
+			show_error("invalide map :(\n");
 		i++;
 	}
-	return (0);
 }
 
-int	check_items(char *line, size_t size, int end)
+void	check_items(char *line, size_t size, int end)
 {
 	static int	po;
 	static int	co;
@@ -84,13 +80,14 @@ int	check_items(char *line, size_t size, int end)
 		if (c == 'E')
 			ex++;
 		if ((c != '0') && (c != '1') && (c != 'P') && (c != 'E') && (c != 'C'))
-			return (-1);
+			show_error("invalide map :(\n");
 		i++;
 	}
 	if (end)
 		if ((po > 1 || po == 0) || (ex > 1 || ex == 0) || co == 0)
-			return (-1);
-	return (i != size);
+			show_error("invalide map :(\n");
+	if (i != size)
+		show_error("invalide map :(\n");
 }
 
 void	map_checker(char *map_path)
@@ -99,19 +96,16 @@ void	map_checker(char *map_path)
 	size_t	size;
 	char	**map;
 
-	i = 0;
 	map = copy_map(map_path);
 	size = ft_strlen((const char *)map[0]) - 1;
+	i = 0;
 	while (map[i])
 	{
-		if (check_items(map[i], size, (map[i + 1] == NULL)) == -1)
-			(/*mem_free(map),*/ show_error("invalide map :(\n"));
+		check_items(map[i], size, (map[i + 1] == NULL));
 		if (i == 0 || map[i + 1] == NULL)
-			if (check_rows(map[i]) == -1)
-				(/*mem_free(map),*/ show_error("invalide map :(\n"));
+			check_rows(map[i]);
 		if ((map[i][0] != '1') || (map[i][size - 1] != '1'))
-			(/*mem_free(map),*/ show_error("invalide map :(\n"));
+			show_error("invalide map :(\n");
 		i++;
 	}
-	//mem_free(map);
 }

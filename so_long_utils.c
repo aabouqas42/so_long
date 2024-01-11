@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 16:26:29 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/11 22:20:47 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ size_t	map_size(int fd)
 	close(fd);
 	return (len);
 }
-win_t	get_win_info(char *map_path)
+void	get_win_info(char *map_path, win_t *win)
 {
-	win_t	window;
 	char	**mp;
 
 	mp = copy_map(map_path);
-	window.hight = 0;
-	window.width = ft_strlen(mp[0]);
-	while (mp[window.hight])
-		window.hight++;
+	win->hight = 0;
+	win->width = ft_strlen(mp[0]);
+	while (mp[win->hight])
+		win->hight++;
 	mem_free(mp);
-	return (window);
 }

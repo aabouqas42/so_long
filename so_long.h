@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 16:05:00 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/11 22:27:30 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@
 # include <mlx.h>
 
 typedef struct win_s {
-	int width;
-	int hight;
+	void	*mlx_ptr;
+	void	*window;
+	int	width;
+	int	hight;
 } win_t;
 
 void	show_error(char *message);
-win_t	get_win_info(char *map_path);
+void	get_win_info(char *map_path, win_t *win);
 void	mem_free(char **map);
-
+int		program_closer(int key_code);
+int		destroy(void *ptr);
 void	name_checker(char *map_name);
 void	map_checker(char *map_path);
 size_t	map_size(int fd);
