@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 22:20:47 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:24:07 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	get_win_info(char *map_path, win_t *win)
 
 	mp = copy_map(map_path);
 	win->hight = 0;
-	win->width = ft_strlen(mp[0]);
+	win->width = ft_strlen(mp[0]) - 1;
 	while (mp[win->hight])
 		win->hight++;
 	mem_free(mp);

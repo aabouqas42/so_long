@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 22:27:30 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:30:53 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@
 typedef struct win_s {
 	void	*mlx_ptr;
 	void	*window;
-	int	width;
-	int	hight;
+	char	*map_path;
+	char	*texturs;
+	int		width;
+	int		hight;
+	void	*image;
+	int		width_img;
+	int		hight_img;
 } win_t;
 
 void	show_error(char *message);
