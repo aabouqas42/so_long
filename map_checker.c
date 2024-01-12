@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/11 22:22:50 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:56:13 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,18 @@ char	**copy_map(char *map_path)
 	size_t	size;
 	size_t	i;
 
-	fd = open(map_path, O_RDONLY);
-	if (fd == -1)
-		show_error("cannot open file !\n");
-	size = map_size(fd) + 1;
+	size = map_size(open_file(map_path)) + 1;
 	map = malloc (size * sizeof(char *));
 	if (map == NULL)
 		exit (-1);
-	fd = open(map_path, O_RDONLY);
+	fd = open_file(map_path);
 	i = 0;
 	while (i < size)
 	{
 		map[i] = get_next_line(fd);
 		i++;
 	}
-	close (fd);
-	return (map);
+	return (close (fd), map);
 }
 
 void	check_rows(char *row)

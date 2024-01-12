@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
-SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c
+SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c
 OBJ = $(SRC:.c=.o)
 NAME = so_long
 

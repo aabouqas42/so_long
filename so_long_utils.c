@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/12 13:24:07 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:45:54 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,13 @@ void	get_win_info(char *map_path, win_t *win)
 	while (mp[win->hight])
 		win->hight++;
 	mem_free(mp);
+}
+int	open_file(char *file_path)
+{
+	int	fd;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		show_error("cannot open file !\n");
+	return (fd);
 }

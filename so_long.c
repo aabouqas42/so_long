@@ -6,48 +6,83 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/12 13:32:57 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/13 00:23:00 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	generate_image(char *textuer_path, win_t *mlx_data)
+void	fill_map(win_t *mlx_data, char **map, void *textures)
 {
-	mlx_data->image = mlx_xpm_file_to_image(mlx_data->mlx_ptr, textuer_path, &mlx_data->width_img, &mlx_data->hight_img);
+	int	width;
+	int	hight;
+	int	i;
+	int	j;
+
+	width = 0;
+	hight = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		width = 0;
+		while (map[i][j] && map[i][j] != '\n')
+		{
+			put_img(mlx_data, textures, width, hight);
+			j++;
+			width += 32;
+		}
+		i++;
+		hight += 32;
+	}
+}
+void	fill_top_bottom(win_t *mlx_data)
+{
+	int	width;
+	int	hight;
+
+	width = 0;
+	hight = (mlx_data->hight * 32) - 32;
+	while (width < (mlx_data->width * 32))
+	{
+		put_img(mlx_data, "textures/top.xpm", width, 0);
+		put_img(mlx_data, "textures/bottom.xpm", width, hight);
+		width += 32;
+	}
+}
+
+void	fill_right_left(win_t *mlx_data)
+{
+	int	width;
+	int	hight;
+
+	width = 0;
+	hight = 0;
+	while (hight < (mlx_data->hight * 32))
+	{
+		put_img(mlx_data, "textures/left.xpm", 0, hight += 32);
+		put_img(mlx_data, "textures/right.xpm", (mlx_data->width * 32) - 32, hight);
+	}
 }
 
 void	map_drawer(win_t *mlx_data)
 {
 	int		hight;
 	int		width;
-	int		w;
-	int		h;
 	char	**map;
-	char	*wall;
 
 	hight = 0;
 	width = 0;
-	w = 0;
-	h = 0;
-	wall = mlx_xpm_file_to_image(mlx_data->mlx_ptr, "textures/wall.xpm", &mlx_data->width_img, &mlx_data->hight_img);
 	map = copy_map(mlx_data->map_path);
-	while (map[hight])
-	{
-		width = 0;
-		w = 0;
-		while (map[hight][width])
-		{
-			if (map[hight][width] != '1')
-				mlx_put_image_to_window(mlx_data->mlx_ptr, mlx_data->window, mlx_data->image, w, h);
-			else if (map[hight][width] == '1')
-				mlx_put_image_to_window(mlx_data->mlx_ptr, mlx_data->window, wall, w, h);
-			width++;
-			w += 32;
-		}
-		hight++;
-		h += 32;
-	}
+	fill_map(mlx_data, map, "textures/floor.xpm");
+	fill_top_bottom(mlx_data);
+	fill_right_left(mlx_data);
+	hight = (mlx_data->hight * 32) - 32;
+	width = (mlx_data->width * 32) - 32;
+	put_img(mlx_data, "textures/top_left.xpm", 0, 0);
+	put_img(mlx_data, "textures/top_right.xpm", width, 0);
+	put_img(mlx_data, "textures/bottom_left.xpm", 0, hight);
+	put_img(mlx_data, "textures/bottom_right.xpm", width, hight);
 }
 
 int	render_next_frame(win_t *mlx_data)
@@ -76,22 +111,9 @@ int	main(int ac, char *av[])
 		get_win_info(av[1], &win);
 		win.mlx_ptr = mlx_init();
 		win.window = mlx_new_window(win.mlx_ptr, win.width * 32, win.hight * 32, "SO_LONG");
-		win.image = mlx_xpm_file_to_image(win.mlx_ptr, "textures/floor.xpm", &win.width_img, &win.hight_img);
-		// int	height = 0;
-		// while (height < win.hight * 32)
-		// {
-		// 	int width = 0;
-		// 	while (width < win.width * 32)
-		// 	{
-		// 		mlx_put_image_to_window(win.mlx_ptr, win.window, win.image, width, height);
-		// 		width+=32;
-		// 	}
-		// 	mlx_put_image_to_window(win.mlx_ptr, win.window, win.image, 0, height);
-		// 	height+=32;
-		// }
-
+		win.image = mlx_xpm_file_to_image(win.mlx_ptr, "textures/top.xpm", &win.width_img, &win.hight_img);
 		map_drawer(&win);
-		//mlx_loop_hook(win.mlx_ptr, render_next_frame, &win);
+		// mlx_loop_hook(win.mlx_ptr, render_next_frame, &win);
 		mlx_hook(win.window, 2, 0, program_closer, &win);
 		mlx_hook(win.window, 17, 0, destroy, &win);
 		mlx_loop(win.mlx_ptr);

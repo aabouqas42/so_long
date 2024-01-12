@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/12 11:30:53 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/13 00:22:29 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct win_s {
 	void	*mlx_ptr;
 	void	*window;
 	char	*map_path;
-	char	*texturs;
 	int		width;
 	int		hight;
 	void	*image;
@@ -39,7 +38,10 @@ void	name_checker(char *map_name);
 void	map_checker(char *map_path);
 size_t	map_size(int fd);
 char	**copy_map(char *map_path);
-
+int		open_file(char *file_path);
+void	*get_img(char *textuer_path, win_t *mlx_data);
+void	put_img(win_t *mlx_data, void *textuer_path, int x, int y);
+void	fill_map(win_t *mlx_data, char **map, void *textures);
 
 
 #endif
