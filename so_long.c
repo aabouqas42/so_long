@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/13 00:23:00 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/13 06:01:36 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	fill_map(win_t *mlx_data, char **map, void *textures)
 		width = 0;
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			put_img(mlx_data, textures, width, hight);
+			if (map[i][j] == '0')
+				put_img(mlx_data, textures, width, hight);
 			j++;
 			width += 32;
 		}
@@ -56,12 +57,13 @@ void	fill_right_left(win_t *mlx_data)
 	int	width;
 	int	hight;
 
-	width = 0;
+	width = (mlx_data->width * 32) - 32;
 	hight = 0;
 	while (hight < (mlx_data->hight * 32))
 	{
-		put_img(mlx_data, "textures/left.xpm", 0, hight += 32);
-		put_img(mlx_data, "textures/right.xpm", (mlx_data->width * 32) - 32, hight);
+		put_img(mlx_data, "textures/left.xpm", 0, hight);
+		put_img(mlx_data, "textures/right.xpm", width, hight);
+		hight += 32;
 	}
 }
 
@@ -69,12 +71,10 @@ void	map_drawer(win_t *mlx_data)
 {
 	int		hight;
 	int		width;
-	char	**map;
 
 	hight = 0;
 	width = 0;
-	map = copy_map(mlx_data->map_path);
-	fill_map(mlx_data, map, "textures/floor.xpm");
+	fill_map(mlx_data, mlx_data->map, "textures/floor.xpm");
 	fill_top_bottom(mlx_data);
 	fill_right_left(mlx_data);
 	hight = (mlx_data->hight * 32) - 32;
@@ -109,12 +109,12 @@ int	main(int ac, char *av[])
 		name_checker(av[1]);
 		map_checker(av[1]);
 		get_win_info(av[1], &win);
+		win.map = copy_map(av[1]);
 		win.mlx_ptr = mlx_init();
 		win.window = mlx_new_window(win.mlx_ptr, win.width * 32, win.hight * 32, "SO_LONG");
 		win.image = mlx_xpm_file_to_image(win.mlx_ptr, "textures/top.xpm", &win.width_img, &win.hight_img);
 		map_drawer(&win);
-		// mlx_loop_hook(win.mlx_ptr, render_next_frame, &win);
-		mlx_hook(win.window, 2, 0, program_closer, &win);
+		mlx_hook(win.window, 2, 0, click_manager, &win);
 		mlx_hook(win.window, 17, 0, destroy, &win);
 		mlx_loop(win.mlx_ptr);
 	}
