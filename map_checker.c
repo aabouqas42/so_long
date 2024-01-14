@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/12 19:56:13 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:14:26 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	name_checker(char *map_name)
 	while (map_name[i] && map_name[i] != '.')
 		i++;
 	if (map_name[i] == '\0' || ft_strcmp(&map_name[i], ".ber") != 0)
-		show_error("invalide file\n");
+		show_message("invalide file\n", -1);
 }
 
 char	**copy_map(char *map_path)
@@ -52,16 +52,16 @@ void	check_rows(char *row)
 	while (row[i] && row[i] != '\n')
 	{
 		if (row[i] != '1')
-			show_error("invalide map :(\n");
+			show_message("invalide map :(\n", -1);
 		i++;
 	}
 }
 
 void	check_items(char *line, size_t size, int end)
 {
-	static int	po;
-	static int	co;
-	static int	ex;
+	static int	player;
+	static int	coins;
+	static int	exit;
 	size_t		i;
 	char		c;
 
@@ -69,30 +69,27 @@ void	check_items(char *line, size_t size, int end)
 	while (line[i] && line[i] != '\n')
 	{
 		c = line[i];
-		if (c == 'P')
-			po++;
-		if (c == 'C')
-			co++;
-		if (c == 'E')
-			ex++;
-		if ((c != '0') && (c != '1') && (c != 'P') && (c != 'E') && (c != 'C'))
-			show_error("invalide map :(\n");
+		player += (c == 'P');
+		coins +=  (c == 'C');
+		exit += (c == 'E');
+		if (ft_strchr("01PEC", c) == 0)
+			show_message("invalide map :(\n", -1);
 		i++;
 	}
 	if (end)
-		if ((po > 1 || po == 0) || (ex > 1 || ex == 0) || co == 0)
-			show_error("invalide map :(\n");
+		if ((player > 1 || player == 0) || (exit > 1 || exit == 0) || coins == 0)
+			show_message("invalide map :(\n", -1);
 	if (i != size)
-		show_error("invalide map :(\n");
+		show_message("invalide map :(\n", -1);
 }
 
-void	map_checker(char *map_path)
+void	map_checker(win_t mlx_data)
 {
 	size_t	i;
 	size_t	size;
 	char	**map;
 
-	map = copy_map(map_path);
+	map = mlx_data.map;
 	size = ft_strlen((const char *)map[0]) - 1;
 	i = 0;
 	while (map[i])
@@ -101,7 +98,7 @@ void	map_checker(char *map_path)
 		if (i == 0 || map[i + 1] == NULL)
 			check_rows(map[i]);
 		if ((map[i][0] != '1') || (map[i][size - 1] != '1'))
-			show_error("invalide map :(\n");
+			show_message("invalide map :(\n", -1);
 		i++;
 	}
 }

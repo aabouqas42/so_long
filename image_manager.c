@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:56:51 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/12 23:15:24 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:44:34 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	*get_img(char *textuer_path, win_t *mlx_data)
 {
 	void	*image;
 
-	image = mlx_xpm_file_to_image(mlx_data->mlx_ptr, textuer_path, &mlx_data->width_img, &mlx_data->hight_img);
+	image = mlx_xpm_file_to_image(mlx_data->mlx_ptr, textuer_path,
+			&mlx_data->width_img, &mlx_data->hight_img);
 	return (image);
 }
 

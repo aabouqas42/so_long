@@ -8,10 +8,10 @@ NAME = so_long
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) -c $<
 clean:
 	make clean -C libft
 	rm -f $(OBJ)

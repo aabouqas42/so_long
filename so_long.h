@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/13 06:06:33 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:07:11 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ typedef struct win_s {
 	char	**map;
 	int		width_img;
 	int		hight_img;
+	int		coins;
 	player	_player;
 } win_t;
 
 
-void	show_error(char *message);
-void	get_win_info(char *map_path, win_t *win);
+void	show_message(char *message, int ret);
+void	get_win_info(win_t *mlx_data);
 void	mem_free(char **map);
 int		click_manager(int key_code, win_t *mlx_data);
 int		destroy(void *ptr);
 void	name_checker(char *map_name);
-void	map_checker(char *map_path);
+void	map_checker(win_t mlx_data);
 size_t	map_size(int fd);
 char	**copy_map(char *map_path);
 int		open_file(char *file_path);
@@ -52,6 +53,7 @@ void	*get_img(char *textuer_path, win_t *mlx_data);
 void	put_img(win_t *mlx_data, void *textuer_path, int x, int y);
 void	fill_map(win_t *mlx_data, char **map, void *textures);
 void	get_player_position(win_t *mlx_data);
+void	get_coin_count(win_t *mlx_data);
 void	map_drawer(win_t *mlx_data);
 void	to_top(win_t *mlx_data);
 void	to_down(win_t *mlx_data);

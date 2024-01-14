@@ -6,17 +6,17 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/13 05:23:26 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:46:40 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "so_long.h"
 
-void	show_error(char *message)
+void	show_message(char *message, int ret)
 {
 	ft_printf(message);
-	exit(-1);
+	exit(ret);
 }
 
 void	mem_free(char **map)
@@ -46,16 +46,15 @@ size_t	map_size(int fd)
 	close(fd);
 	return (len);
 }
-void	get_win_info(char *map_path, win_t *win)
+void	get_win_info(win_t *mlx_data)
 {
 	char	**map;
 
-	map = copy_map(map_path);
-	win->hight = 0;
-	win->width = ft_strlen(map[0]) - 1;
-	while (map[win->hight])
-		win->hight++;
-	mem_free(map);
+	map = mlx_data->map;
+	mlx_data->hight = 0;
+	mlx_data->width = ft_strlen(map[0]) - 1;
+	while (map[mlx_data->hight])
+		mlx_data->hight++;
 }
 int	open_file(char *file_path)
 {
@@ -63,7 +62,7 @@ int	open_file(char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		show_error("cannot open file !\n");
+		show_message("cannot open file !\n", -1);
 	return (fd);
 }
 
@@ -86,6 +85,26 @@ void	get_player_position(win_t *mlx_data)
 				mlx_data->_player.y = i;
 				return;
 			}
+			j++;
+		}
+		i++;
+	}
+}
+void	get_coin_count(win_t *mlx_data)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	map = mlx_data->map;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				mlx_data->coins++;
 			j++;
 		}
 		i++;
