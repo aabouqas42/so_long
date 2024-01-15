@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/14 19:51:15 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/15 22:43:36 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	fill_map(win_t *mlx_data, char **map, void *textures)
 	i = 0;
 	while (map[i])
 	{
-		j = 0;
-		width = 0;
+		(j = 0, width = 0);
 		while (map[i][j] && map[i][j] != '\n')
 		{
 			put_img(mlx_data, textures, width, hight);
@@ -34,11 +33,10 @@ void	fill_map(win_t *mlx_data, char **map, void *textures)
 			if (map[i][j] == 'C')
 				put_img(mlx_data, "textures/coins.xpm", width, hight);
 			if (map[i][j] == 'E')
-				put_img(mlx_data, "textures/door_closed.xpm", width, hight);
+				put_img(mlx_data, DOOR_CLOSED, width, hight);
 			(j++, width += 32);
 		}
-		i++;
-		hight += 32;
+		(i++, hight += 32);
 	}
 }
 void	fill_top_bottom(win_t *mlx_data)
@@ -83,15 +81,15 @@ void	 map_drawer(win_t *mlx_data)
 	hight = 0;
 	width = 0;
 	fill_map(mlx_data, mlx_data->map, "textures/floor.xpm");
-	put_img(mlx_data, "textures/hero.xpm", mlx_data->_player.x * 32, mlx_data->_player.y * 32);
+	put_img(mlx_data, HERO, mlx_data->_player.x * 32, mlx_data->_player.y * 32);
 	fill_top_bottom(mlx_data);
 	fill_right_left(mlx_data);
 	hight = (mlx_data->hight * 32) - 32;
 	width = (mlx_data->width * 32) - 32;
-	put_img(mlx_data, "textures/top_left.xpm", 0, 0);
-	put_img(mlx_data, "textures/top_right.xpm", width, 0);
-	put_img(mlx_data, "textures/bottom_left.xpm", 0, hight);
-	put_img(mlx_data, "textures/bottom_right.xpm", width, hight);
+	put_img(mlx_data, TOP_LEFT, 0, 0);
+	put_img(mlx_data, TOP_RIGHT, width, 0);
+	put_img(mlx_data, BOTTOM_LEFT, 0, hight);
+	put_img(mlx_data, BOTTOM_RIGHT, width, hight);
 }
 
 int	main(int ac, char *av[])
@@ -107,9 +105,7 @@ int	main(int ac, char *av[])
 		win.map = copy_map(win.map_path);
 		name_checker(win.map_path);
 		map_checker(win);
-		get_win_info(&win);
-		get_player_position(&win);
-		get_coin_count(&win);
+		get_map_data(&win);
 		win.mlx_ptr = mlx_init();
 		win.window = mlx_new_window(win.mlx_ptr, win.width * 32, win.hight * 32, "SO_LONG");
 		win.image = mlx_xpm_file_to_image(win.mlx_ptr, "textures/top.xpm", &win.width_img, &win.hight_img);

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/14 16:14:26 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:10:18 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	**copy_map(char *map_path)
 	while (i < size)
 	{
 		map[i] = get_next_line(fd);
+		if (map[i] && map[i][ft_strlen(map[i]) - 1] == '\n')
+			map[i][ft_strlen(map[i])-1] = '\0';
 		i++;
 	}
 	return (close (fd), map);
@@ -49,7 +51,7 @@ void	check_rows(char *row)
 	int	i;
 
 	i = 0;
-	while (row[i] && row[i] != '\n')
+	while (row[i])
 	{
 		if (row[i] != '1')
 			show_message("invalide map :(\n", -1);
@@ -66,14 +68,14 @@ void	check_items(char *line, size_t size, int end)
 	char		c;
 
 	i = 0;
-	while (line[i] && line[i] != '\n')
+	while (line[i])
 	{
 		c = line[i];
 		player += (c == 'P');
 		coins +=  (c == 'C');
 		exit += (c == 'E');
 		if (ft_strchr("01PEC", c) == 0)
-			show_message("invalide map :(\n", -1);
+			show_message("invalide map\n", -1);
 		i++;
 	}
 	if (end)
@@ -90,7 +92,7 @@ void	map_checker(win_t mlx_data)
 	char	**map;
 
 	map = mlx_data.map;
-	size = ft_strlen((const char *)map[0]) - 1;
+	size = ft_strlen((const char *)map[0]);
 	i = 0;
 	while (map[i])
 	{

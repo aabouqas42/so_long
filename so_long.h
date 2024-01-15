@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/14 15:07:11 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/15 22:43:12 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@
 # include <stdio.h>
 # include <mlx.h>
 
+# define FLOOR "textures/floor.xpm"
+# define TOP_LEFT "textures/top_left.xpm"
+# define TOP_RIGHT "textures/top_right.xpm"
+# define BOTTOM_LEFT "textures/bottom_left.xpm"
+# define BIGOTTOM_RHT "textures/bottom_right.xpm"
+# define HERO "textures/hero.xpm"
+# define DOOR_OPNED "textures/door_opned.xpm"
+# define DOOR_CLOSED "textures/door_closed.xpm"
+
 typedef struct player {
 	int	score;
+	int		door_x;
+	int		door_y;
 	int	x;
 	int	y;
 } player;
@@ -52,9 +63,10 @@ int		open_file(char *file_path);
 void	*get_img(char *textuer_path, win_t *mlx_data);
 void	put_img(win_t *mlx_data, void *textuer_path, int x, int y);
 void	fill_map(win_t *mlx_data, char **map, void *textures);
-void	get_player_position(win_t *mlx_data);
+void	get_map_data(win_t *mlx_data);
 void	get_coin_count(win_t *mlx_data);
 void	map_drawer(win_t *mlx_data);
+int	check_point(char **map, int x, int y, int c);
 void	to_top(win_t *mlx_data);
 void	to_down(win_t *mlx_data);
 void	to_left(win_t *mlx_data);

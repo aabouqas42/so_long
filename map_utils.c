@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:59:51 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/15 16:07:24 by aabouqas         ###   ########.fr       */
+/*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
+/*   Updated: 2024/01/15 18:48:14 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+void	mem_free(char **map)
 {
-	while (*s)
-	{
-		if ((unsigned char)*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
-	}
-	if ((unsigned char)*s == (unsigned char)c)
-		return ((char *)s);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+		free (map[i++]);
+	free(map);
 }
+
+size_t	map_size(int fd)
+{
+	size_t	len;
+	char	*line;
+
+	len = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		free (line);
+		len++;
+	}
+	close(fd);
+	return (len);
+}
+
+
