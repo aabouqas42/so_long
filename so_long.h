@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/16 18:11:42 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:44:50 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define BOTTOM_LEFT "textures/bottom_left.xpm"
 # define BOTTOM_RIGHT "textures/bottom_right.xpm"
 # define HERO "textures/hero.xpm"
+# define MONSTER_TO_RIGHT "textures/monster_to_right.xpm"
+# define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
 # define DOOR_OPNED "textures/door_opned.xpm"
 # define DOOR_CLOSED "textures/door_closed.xpm"
 
@@ -35,6 +37,11 @@ typedef struct player_s {
 	int		px;
 	int		py;
 } player_t;
+
+typedef struct monster_s {
+	int	x;
+	int	y;
+} monster_t;
 
 typedef struct info_s {
 	void		*mlx_ptr;
@@ -49,6 +56,7 @@ typedef struct info_s {
 	int			coins;
 	int			valid;
 	player_t	player;
+	monster_t	mons;
 } info_t;
 
 
@@ -69,6 +77,7 @@ void	get_map_data(info_t *mlx_data);
 void	get_coin_count(info_t *mlx_data);
 void	map_drawer(info_t *mlx_data);
 int	check_point(char **map, int x, int y, int c);
+int	monster(info_t *info);
 void	flood_fill(info_t *info);
 void	to_top(info_t *mlx_data);
 void	to_down(info_t *mlx_data);
