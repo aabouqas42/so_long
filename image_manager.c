@@ -6,25 +6,25 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:56:51 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/14 15:44:34 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:51:37 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*get_img(char *textuer_path, win_t *mlx_data)
+void	*get_img(char *textuer_path, info_t *info)
 {
 	void	*image;
 
-	image = mlx_xpm_file_to_image(mlx_data->mlx_ptr, textuer_path,
-			&mlx_data->width_img, &mlx_data->hight_img);
+	image = mlx_xpm_file_to_image(info->mlx_ptr, textuer_path,
+			&info->width_img, &info->hight_img);
 	return (image);
 }
 
-void	put_img(win_t *mlx_data, void *textuer_path, int x, int y)
+void	put_img(info_t *info, void *textuer_path, int x, int y)
 {
 	void	*image;
 
-	image = get_img(textuer_path, mlx_data);
-	mlx_put_image_to_window(mlx_data->mlx_ptr, mlx_data->window, image, x, y);
+	image = get_img(textuer_path, info);
+	mlx_put_image_to_window(info->mlx_ptr, info->window, image, x, y);
 }

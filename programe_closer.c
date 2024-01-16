@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:59:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/14 00:13:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:52:02 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	destroy(void *ptr)
 	exit (0);
 }
 
-int	click_manager(int key_code, win_t *mlx_data)
+int	click_manager(int key_code, info_t *info)
 {
 	if (key_code == 53)
 		exit(0);
 	if (key_code == 126)
-		to_top(mlx_data);
+		to_top(info);
 	if (key_code == 125)
-		to_down(mlx_data);
+		to_down(info);
 	if  (key_code == 124)
-		to_right(mlx_data);
+		to_right(info);
 	if (key_code == 123)
-		to_left(mlx_data);
+		to_left(info);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/15 16:10:18 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:16:19 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,84 +23,85 @@ void	name_checker(char *map_name)
 		show_message("invalide file\n", -1);
 }
 
-char	**copy_map(char *map_path)
-{
-	int		fd;
-	char	**map;
-	size_t	size;
-	size_t	i;
 
-	size = map_size(open_file(map_path)) + 1;
-	map = malloc (size * sizeof(char *));
-	if (map == NULL)
-		exit (-1);
-	fd = open_file(map_path);
-	i = 0;
-	while (i < size)
-	{
-		map[i] = get_next_line(fd);
-		if (map[i] && map[i][ft_strlen(map[i]) - 1] == '\n')
-			map[i][ft_strlen(map[i])-1] = '\0';
-		i++;
-	}
-	return (close (fd), map);
-}
-
-void	check_rows(char *row)
+void	check_rows(info_t info)
 {
 	int	i;
 
 	i = 0;
-	while (row[i])
+	while (info.map[i])
 	{
-		if (row[i] != '1')
+		if (ft_strlen(info.map[i]) != info.width)
+			show_message("invalide map :(\n", -1);
+		i++;
+	}
+	i = 0;
+	while (i < info.width)
+	{
+		if (info.map[0][i] != '1' || info.map[info.hight - 1][i] != '1')
+			show_message("invalide map :(\n", -1);
+		i++;
+	}
+	i = 0;
+	while (i < info.hight)
+	{
+		if (info.map[i][0] != '1' || info.map[i][info.width - 1] != '1')
 			show_message("invalide map :(\n", -1);
 		i++;
 	}
 }
 
-void	check_items(char *line, size_t size, int end)
+void	map_checker(info_t info)
 {
 	static int	player;
 	static int	coins;
 	static int	exit;
-	size_t		i;
-	char		c;
+	char	c;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (line[i])
+	check_rows(info);
+	while (info.map[i])
 	{
-		c = line[i];
-		player += (c == 'P');
-		coins +=  (c == 'C');
-		exit += (c == 'E');
-		if (ft_strchr("01PEC", c) == 0)
-			show_message("invalide map\n", -1);
+		j = 0;
+		while (info.map[i][j])
+		{
+			c = info.map[i][j];
+			player += (c == 'P');
+			coins +=  (c == 'C');
+			exit += (c == 'E');
+			j++;
+		}
 		i++;
 	}
-	if (end)
-		if ((player > 1 || player == 0) || (exit > 1 || exit == 0) || coins == 0)
-			show_message("invalide map :(\n", -1);
-	if (i != size)
+	if ((player > 1 || player == 0) || (exit == 0 || exit > 1) || coins == 0)
 		show_message("invalide map :(\n", -1);
 }
-
-void	map_checker(win_t mlx_data)
+void	fill(info_t *info, char **map, int start_x, int start_y)
 {
-	size_t	i;
-	size_t	size;
+	char	c;
+	if (start_x < 0 || start_x >= info->width || start_y < 0 || start_y >= info->hight)
+		return ;
+	if (map[start_y][start_x] == '1' || map[start_y][start_x] == 'V')
+		return ;
+	c = info->map[start_y][start_x];
+	if (c == 'C' || c == 'E')
+		info->valid++;
+	map[start_y][start_x] = 'V';
+	fill(info, map, start_x, start_y - 1);
+	fill(info, map, start_x, start_y + 1);
+	fill(info, map, start_x - 1, start_y);
+	fill(info, map, start_x + 1, start_y);
+}
+
+void	flood_fill(info_t *info)
+{
 	char	**map;
 
-	map = mlx_data.map;
-	size = ft_strlen((const char *)map[0]);
-	i = 0;
-	while (map[i])
-	{
-		check_items(map[i], size, (map[i + 1] == NULL));
-		if (i == 0 || map[i + 1] == NULL)
-			check_rows(map[i]);
-		if ((map[i][0] != '1') || (map[i][size - 1] != '1'))
-			show_message("invalide map :(\n", -1);
-		i++;
-	}
+	map = copy_map(info->map_path);
+	fill (info, map, info->player.px, info->player.py);
+	mem_free(map);
+	if (info->valid != (info->coins + 1))
+		show_message("invalide path :(\n", -1);
 }

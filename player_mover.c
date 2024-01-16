@@ -12,119 +12,93 @@
 
 #include "so_long.h"
 
-void	to_top(win_t *mlx_data)
-{
-	char	**map;
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-
-	map = mlx_data->map;
-	x = mlx_data->_player.x * 32;
-	y = mlx_data->_player.y * 32;
-	i = mlx_data->_player.y;
-	j = mlx_data->_player.x;
-	if (mlx_data->_player.score == mlx_data->coins)
-	{
-		put_img(mlx_data, DOOR_OPNED, mlx_data->_player.door_x, mlx_data->_player.door_y);
-		if (map[i - 1][j] == 'E')
-			show_message("You won :)\n", 0);
-	}
-	if (map[i - 1][j] == '0' || map[i - 1][j] == 'C' || map[i - 1][j] == 'P')
-	{
-		if (map[i - 1][j] == 'C')
-			(mlx_data->_player.score++, map[i - 1][j] = '0');
-		mlx_data->_player.y--;
-		put_img(mlx_data, FLOOR, x, y);
-		put_img(mlx_data, FLOOR, x, y - 32);
-		put_img(mlx_data, HERO, x, y - 32);
-	}
-}
-
-void	to_down(win_t *mlx_data)
-{
-	char	**map;
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-
-	map = mlx_data->map;
-	x = mlx_data->_player.x * 32;
-	y = mlx_data->_player.y * 32;
-	i = mlx_data->_player.y;
-	j = mlx_data->_player.x;
-	if ((map[i + 1][j] == 'E' ) && (mlx_data->_player.score == mlx_data->coins))
-		show_message("You won :)\n", 0);
-	if (map[i + 1][j] == '0' || map[i + 1][j] == 'C' || map[i + 1][j] == 'P')
-	{
-		if (map[i + 1][j] == 'C')
-		{
-			mlx_data->_player.score++;
-			map[i + 1][j] = '0';
-		}
-		mlx_data->_player.y++;
-		put_img(mlx_data, FLOOR, x, y);
-		put_img(mlx_data, FLOOR, x, y + 32);
-		put_img(mlx_data, HERO, x, y + 32);
-	}
-}
-void	to_left(win_t *mlx_data)
-{
-	char	**map;
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-
-	map = mlx_data->map;
-	x = mlx_data->_player.x * 32;
-	y = mlx_data->_player.y * 32;
-	i = mlx_data->_player.y;
-	j = mlx_data->_player.x;
-	if ((map[i][j - 1] == 'E' ) && (mlx_data->_player.score == mlx_data->coins))
-		show_message("You win :)\n", 0);
-	if (map[i][j - 1] == '0' || map[i][j - 1] == 'C' || map[i][j - 1] == 'P')
-	{
-		if (map[i][j - 1] == 'C')
-		{
-			mlx_data->_player.score++;
-			map[i][j - 1] = '0';
-		}
-		mlx_data->_player.x--;
-		put_img(mlx_data, FLOOR, x, y);
-		put_img(mlx_data, FLOOR, x - 32, y);
-		put_img(mlx_data, HERO, x - 32, y);
-	}
-}
-
-void	to_right(win_t *mlx_data)
+void	to_top(info_t *info)
 {
 	char	c;
-	int		i;
-	int		j;
-	int		x;
-	int		y;
 
-	x = mlx_data->_player.x * 32;
-	y = mlx_data->_player.y * 32;
-	i = mlx_data->_player.y;
-	j = mlx_data->_player.x;
-	c = mlx_data->map[i][j + 1];
-	if (mlx_data->_player.score == mlx_data->coins)
-	{
-		put_img(mlx_data, DOOR_OPNED,500, 500);
-		if (c == 'E')
-			show_message("You win :)\n", 0);
-	}
+	c = info->map[info->player.py - 1][info->player.px];
+	if (c == 'E' && info->player.score == info->coins)
+		show_message("You won :)\n", 0);
 	if (c == '0' || c == 'C' || c == 'P')
 	{
 		if (c == 'C')
-			(mlx_data->_player.score++, mlx_data->map[i][j + 1] = '0');
-		mlx_data->_player.x++;
-		put_img(mlx_data, FLOOR, x, y);
-		put_img(mlx_data, FLOOR, x + 32, y);
-		put_img(mlx_data, HERO, x + 32, y);
+		{
+			info->player.score++;
+			info->map[info->player.py - 1][info->player.px] = '0';
+			if (info->player.score == info->coins)
+				put_img(info, DOOR_OPNED, info->player.dx * 32, info->player.dy * 32);
+		}
+		put_img(info, FLOOR, (info->player.px * 32), (info->player.py * 32));
+		put_img(info, FLOOR, (info->player.px * 32), ((info->player.py * 32) - 32));
+		put_img(info, HERO, (info->player.px * 32), ((info->player.py * 32) - 32));
+		info->player.py--;
+	}
+}
+
+void	to_down(info_t *info)
+{
+	char	c;
+
+	c = info->map[info->player.py + 1][info->player.px];
+	if (c == 'E' && info->player.score == info->coins)
+		show_message("You won :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
+	{
+		if (c == 'C')
+		{
+			info->player.score++;
+			info->map[info->player.py + 1][info->player.px] = '0';
+			if (info->player.score == info->coins)
+				put_img(info, DOOR_OPNED, (info->player.dx * 32), (info->player.dy * 32));
+		}
+		put_img(info, FLOOR, (info->player.px * 32), (info->player.py * 32));
+		put_img(info, FLOOR, (info->player.px * 32), ((info->player.py * 32) + 32));
+		put_img(info, HERO, (info->player.px * 32), ((info->player.py * 32) + 32));
+		info->player.py++;
+	}
+}
+void	to_left(info_t *info)
+{
+	char	c;
+
+	c = info->map[info->player.py][info->player.px - 1];
+	if (c == 'E' && info->player.score == info->coins)
+		show_message("You win :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
+	{
+		if (c == 'C')
+		{
+			info->player.score++;
+			info->map[info->player.py][info->player.px - 1] = '0';
+			if (info->player.score == info->coins)
+				put_img(info, DOOR_OPNED, (info->player.dx * 32), (info->player.dy * 32));
+		}
+		put_img(info, FLOOR, (info->player.px * 32), (info->player.py * 32));
+		put_img(info, FLOOR,( (info->player.px * 32) - 32), (info->player.py * 32));
+		put_img(info, HERO, ((info->player.px * 32) - 32), (info->player.py * 32));
+		info->player.px--;
+	}
+}
+
+void	to_right(info_t *info)
+{
+	char	c;
+
+	c = info->map[info->player.py][info->player.px + 1];
+	if (c == 'E' && info->player.score == info->coins)
+		show_message("You win :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
+	{
+		if (c == 'C')
+		{
+			info->player.score++;
+			info->map[info->player.py][info->player.px + 1] = '0';
+			if (info->player.score == info->coins)
+				put_img(info, DOOR_OPNED, info->player.dx * 32, info->player.dy * 32);
+		}
+		put_img(info, FLOOR, (info->player.px * 32), (info->player.py * 32));
+		put_img(info, FLOOR, ((info->player.px * 32) + 32), (info->player.py * 32));
+		put_img(info, HERO, ((info->player.px * 32) + 32), (info->player.py * 32));
+		info->player.px++;
 	}
 }

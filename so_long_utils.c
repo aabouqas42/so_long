@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/15 19:33:25 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:10:20 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	show_message(char *message, int ret)
 	exit(ret);
 }
 
-void	get_win_info(win_t *mlx_data)
+void	get_win_info(info_t *info)
 {
 	char	**map;
 
-	map = mlx_data->map;
-	mlx_data->hight = 0;
-	mlx_data->width = ft_strlen(map[0]);
-	while (map[mlx_data->hight])
-		mlx_data->hight++;
+	map = info->map;
+	info->hight = 0;
+	info->width = ft_strlen(map[0]);
+	while (map[info->hight])
+		info->hight++;
 }
 int	open_file(char *file_path)
 {
@@ -39,51 +39,28 @@ int	open_file(char *file_path)
 	return (fd);
 }
 
-void	get_map_data(win_t *mlx_data)
+void	get_map_data(info_t *info)
 {
 	int		i;
 	int		j;
-	char	**map;
 	char	c;
 
-	map = mlx_data->map;
 	i = 0;
-	while (map[i])
+	while (info->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (info->map[i][j])
 		{
-			c = map[i][j];
-			if (c == 'P')
-				(mlx_data->_player.x = j, mlx_data->_player.y = i);
-			if (c == 'E')
-				(mlx_data->_player.door_x = j, mlx_data->_player.door_y = i);
-			if (c == 'C')
-				mlx_data->coins++;
+			c = info->map[i][j];
+			info->player.py = ((c == 'P') * i) + info->player.py;
+			info->player.px = ((c == 'P') * j) + info->player.px;
+			info->player.dy = ((c == 'E') * i) + info->player.dy;
+			info->player.dx = ((c == 'E') * j) + info->player.dx;
+			info->coins += (c == 'C');
 			j++;
 		}
 		i++;
 	}
-	mlx_data->hight = i;
-	mlx_data->width = ft_strlen((const char *)map[0]);
-}
-void	get_coin_count(win_t *mlx_data)
-{
-	char	**map;
-	int		i;
-	int		j;
-
-	map = mlx_data->map;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'C')
-				mlx_data->coins++;
-			j++;
-		}
-		i++;
-	}
+	info->hight = i;
+	info->width = ft_strlen((const char *)info->map[0]);
 }
