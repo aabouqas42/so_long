@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/16 22:44:50 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:34:17 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
 # define DOOR_OPNED "textures/door_opned.xpm"
 # define DOOR_CLOSED "textures/door_closed.xpm"
+# define PLYR_TLFT "textures/player_to_left.xpm"
+# define PLYR_TRGT "textures/player_to_right.xpm"
+# define PLYR_TLUP "textures/player_to_top.xpm"
+# define PLYR_TLDW "textures/player_to_down.xpm"
 
 typedef struct player_s {
 	int		score;
@@ -56,7 +60,7 @@ typedef struct info_s {
 	int			coins;
 	int			valid;
 	player_t	player;
-	monster_t	mons;
+	monster_t	monster;
 } info_t;
 
 
@@ -74,15 +78,19 @@ void	*get_img(char *textuer_path, info_t *mlx_data);
 void	put_img(info_t *mlx_data, void *textuer_path, int x, int y);
 void	fill_map(info_t *mlx_data, char **map, void *textures);
 void	get_map_data(info_t *mlx_data);
-void	get_coin_count(info_t *mlx_data);
+// void	get_coin_count(info_t *mlx_data);
 void	map_drawer(info_t *mlx_data);
-int	check_point(char **map, int x, int y, int c);
-int	monster(info_t *info);
+// int		check_point(char **map, int x, int y, int c);
+int		_monster(info_t *info);
 void	flood_fill(info_t *info);
 void	to_top(info_t *mlx_data);
 void	to_down(info_t *mlx_data);
 void	to_left(info_t *mlx_data);
 void	to_right(info_t *mlx_data);
+void	animate_to_top(info_t *info, void *_char, int *x, int *y);
+void	animate_to_down(info_t *info, void *_char, int *x, int *y);
+void	animate_to_right(info_t *info, void *_char, int *x, int *y);
+void	animate_to_left(info_t *info, void *_char, int *x, int *y);
 
 
 #endif

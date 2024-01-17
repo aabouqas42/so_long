@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:59:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/16 12:52:02 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:12:54 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,4 @@ int	click_manager(int key_code, info_t *info)
 		to_left(info);
 	return (0);
 }
+

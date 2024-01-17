@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/16 22:54:17 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:05:46 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void	get_map_data(info_t *info)
 			info->player.px = ((c == 'P') * j) + info->player.px;
 			info->player.dy = ((c == 'E') * i) + info->player.dy;
 			info->player.dx = ((c == 'E') * j) + info->player.dx;
-			info->mons.x = ((c == 'M') * j) + info->mons.x;
-			info->mons.y = ((c == 'M') * i) + info->mons.y;
+			info->monster.y = ((c == 'M') * i) + info->monster.y;
+			info->monster.x = ((c == 'M') * j) + info->monster.x;
 			info->coins += (c == 'C');
 			j++;
 		}
 		i++;
 	}
+	info->map[info->monster.y][info->monster.x] = '0';
 	info->hight = i;
 	info->width = ft_strlen((const char *)info->map[0]);
 }

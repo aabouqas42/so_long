@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
-SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c player_mover.c map_utils.c
+SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c player_mover.c map_utils.c animator.c
 OBJ = $(SRC:.c=.o)
 HEADER = so_long.h
 NAME = so_long
@@ -13,7 +13,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 %.o : %.c $(HEADER)
 	make -C libft
-	$(CC) -c $<
+	$(CC) $(CFLAGS) -Imlx -c $<
 clean:
 	make clean -C libft
 	rm -f $(OBJ)
