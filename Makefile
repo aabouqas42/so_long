@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
-SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c player_mover.c map_utils.c animator.c
+SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c player_mover.c map_utils.c animator.c follow_me.c
 OBJ = $(SRC:.c=.o)
 HEADER = so_long.h
 NAME = so_long

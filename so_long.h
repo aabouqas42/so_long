@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/17 19:34:17 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/18 05:14:57 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@
 # define BOTTOM_LEFT "textures/bottom_left.xpm"
 # define BOTTOM_RIGHT "textures/bottom_right.xpm"
 # define HERO "textures/hero.xpm"
+# define TOP "textures/top_bottom.xpm"
 # define MONSTER_TO_RIGHT "textures/monster_to_right.xpm"
 # define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
+# define MONSTER_TO_BTM "textures/monster_to_bottom.xpm"
+# define MONSTER_TO_TOP "textures/monster_to_top.xpm"
 # define DOOR_OPNED "textures/door_opned.xpm"
 # define DOOR_CLOSED "textures/door_closed.xpm"
 # define PLYR_TLFT "textures/player_to_left.xpm"
@@ -59,6 +62,7 @@ typedef struct info_s {
 	int			hight_img;
 	int			coins;
 	int			valid;
+	size_t		counter;
 	player_t	player;
 	monster_t	monster;
 } info_t;
@@ -83,6 +87,7 @@ void	map_drawer(info_t *mlx_data);
 // int		check_point(char **map, int x, int y, int c);
 int		_monster(info_t *info);
 void	flood_fill(info_t *info);
+void	follow_me(info_t *info);
 void	to_top(info_t *mlx_data);
 void	to_down(info_t *mlx_data);
 void	to_left(info_t *mlx_data);

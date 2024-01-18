@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/17 20:02:58 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/18 00:56:23 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_rows(info_t info)
 	while (i < info.hight)
 	{
 		if (info.map[i][0] != '1' || info.map[i][info.width - 1] != '1')
-			show_message("Kkkkkinvalide map :(\n", -1);
+			show_message("invalide map :(\n", -1);
 		i++;
 	}
 	i = 0;
@@ -87,8 +87,7 @@ void	check(info_t *info, char **map, int start_x, int start_y)
 	if (map[start_y][start_x] == '1' || map[start_y][start_x] == 'V')
 		return ;
 	c = info->map[start_y][start_x];
-	if (c == 'C' || c == 'E')
-		info->valid++;
+	info->valid += (c == 'C') + (c == 'E');
 	map[start_y][start_x] = 'V';
 	check(info, map, start_x, start_y - 1);
 	check(info, map, start_x, start_y + 1);
@@ -103,6 +102,8 @@ void	flood_fill(info_t *info)
 	map = copy_map(info->map_path);
 	check (info, map, info->player.px, info->player.py);
 	mem_free(map);
+	ft_printf("%d :: %d\n", info->valid, info->coins);
 	if (info->valid != (info->coins + 1))
 		show_message("invalide path :(\n", -1);
+
 }

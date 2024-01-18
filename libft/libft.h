@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:37:38 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/10 19:31:48 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/17 23:19:46 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-size_t	ft_strlen(const char *s);
+int	ft_strlen(const char *s);
 int		ft_isprint(int c);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);

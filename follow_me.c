@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   follow_me.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 12:44:30 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/17 23:19:39 by aabouqas         ###   ########.fr       */
+/*   Created: 2024/01/18 04:08:24 by aabouqas          #+#    #+#             */
+/*   Updated: 2024/01/18 04:19:02 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-int	ft_strlen(const char *s)
+
+void	follow_me(info_t *info)
 {
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	info->monster.y = info->player.py;
 }

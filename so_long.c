@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/17 18:35:38 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/18 03:03:02 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	main(int ac, char *av[])
 		info.width_img = 0;
 		info.map_path = av[1];
 		info.coins = 0;
+		info.valid = 0;
 		info.map = copy_map(info.map_path);
 		get_map_data(&info);
 		name_checker(info.map_path);
@@ -113,7 +114,6 @@ int	main(int ac, char *av[])
 		map_drawer(&info);
 		mlx_hook(info.window, 2, 0, click_manager, &info);
 		mlx_hook(info.window, 17, 0, destroy, &info);
-		mlx_loop_hook(info.mlx_ptr, _monster, &info);
 		mlx_loop(info.mlx_ptr);
 	}
 }
