@@ -29,6 +29,7 @@ void	to_top(info_t *info)
 				put_img(info, DOOR_OPNED, info->player.dx * 32, info->player.dy * 32);
 		}
 		animate_to_top(info, PLYR_TLUP, &info->player.px, &info->player.py);
+		info->monster.path[info->player.py][info->player.px] = 'P';
 		info->counter++;
 	}
 }
@@ -50,6 +51,7 @@ void	to_down(info_t *info)
 				put_img(info, DOOR_OPNED, (info->player.dx * 32), (info->player.dy * 32));
 		}
 		animate_to_down(info, PLYR_TLDW, &info->player.px, &info->player.py);
+		info->monster.path[info->player.py][info->player.px] = 'P';
 		info->counter++;
 	}
 }
@@ -70,6 +72,7 @@ void	to_left(info_t *info)
 				put_img(info, DOOR_OPNED, (info->player.dx * 32), (info->player.dy * 32));
 		}
 		animate_to_left(info, PLYR_TLFT, &info->player.px, &info->player.py);
+		info->monster.path[info->player.py][info->player.px] = 'P';
 		info->counter++;
 	}
 }
@@ -91,40 +94,29 @@ void	to_right(info_t *info)
 				put_img(info, DOOR_OPNED, info->player.dx * 32, info->player.dy * 32);
 		}
 		animate_to_right(info, PLYR_TRGT, &info->player.px, &info->player.py);
+		info->monster.path[info->player.py][info->player.px] = 'P';
 		info->counter++;
 	}
 }
 
 int	_monster(info_t *info)
 {
-	static size_t	i;
-	static int		direction = 1;
-	char			c;
+	static size_t	i = 0;
 
-	if ((info->player.py == info->monster.y) && (info->player.px == info->monster.x))
-		show_message("You lose hhhhhhh :)\n", -1);
-	if (i == 1000)
+	if ((info->player.py == info->monster.y )&& (info->player.px == info->monster.x))
+		show_message("Game Over :(\n", -1);
+	if (i == 1500)
 	{
-		if (direction == 1)
-		{
+		info->monster.path[info->monster.y][info->monster.x] = '0';
+		if (info->monster.path[info->monster.y][info->monster.x + 1] == 'P')
 			animate_to_right(info, MONSTER_TO_RIGHT, &info->monster.x, &info->monster.y);
-			if (info->map[info->monster.y + 1][info->monster.x] == '0' && info->player.py > info->monster.y)
-				animate_to_down(info, MONSTER_TO_BTM, &info->monster.x, &info->monster.y);
-			else if (info->map[info->monster.y - 1][info->monster.x] == '0' && info->player.py < info->monster.y)
-				animate_to_top(info, MONSTER_TO_TOP, &info->monster.x, &info->monster.y);
-			c = info->map[info->monster.y][info->monster.x + 1];
-			if (c == 'E' || c == '1' || c == 'C')
-				direction = 0;
-		} else if (direction == 0) {
+		else if (info->monster.path[info->monster.y][info->monster.x - 1] == 'P')
 			animate_to_left(info, MONSTER_TO_LEFT, &info->monster.x, &info->monster.y);
-			if (info->map[info->monster.y + 1][info->monster.x] == '0' && info->player.py > info->monster.y)
-				animate_to_down(info, MONSTER_TO_BTM, &info->monster.x, &info->monster.y);
-			else if (info->map[info->monster.y - 1][info->monster.x] == '0' && info->player.py < info->monster.y)
-				animate_to_top(info, MONSTER_TO_TOP, &info->monster.x, &info->monster.y);
-			c = info->map[info->monster.y][info->monster.x - 1];
-			if (c == 'E' || c == '1' || c == 'C')
-				direction = 1;
-		}
+		else if (info->monster.path[info->monster.y + 1][info->monster.x] == 'P')
+			animate_to_down(info, MONSTER_TO_BTM, &info->monster.x, &info->monster.y);
+		else if (info->monster.path[info->monster.y - 1][info->monster.x] == 'P')
+			animate_to_top(info, MONSTER_TO_TOP, &info->monster.x, &info->monster.y);
+
 		i = 0;
 	}
 	i++;

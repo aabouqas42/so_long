@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:08:24 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/18 04:19:02 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:45:40 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 void	follow_me(info_t *info)
 {
-	info->monster.y = info->player.py;
+	(void)info;
 }

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/18 05:14:57 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:50:26 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct player_s {
 } player_t;
 
 typedef struct monster_s {
-	int	x;
-	int	y;
+	char	**path;
+	int		x;
+	int		y;
 } monster_t;
 
 typedef struct info_s {
