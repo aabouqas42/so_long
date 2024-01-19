@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/18 17:50:26 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:12:55 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	animate_to_down(info_t *info, void *_char, int *x, int *y);
 void	animate_to_right(info_t *info, void *_char, int *x, int *y);
 void	animate_to_left(info_t *info, void *_char, int *x, int *y);
 
+void	prtmap(char **map);
 
 #endif

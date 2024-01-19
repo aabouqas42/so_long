@@ -52,6 +52,7 @@ void	to_down(info_t *info)
 		}
 		animate_to_down(info, PLYR_TLDW, &info->player.px, &info->player.py);
 		info->monster.path[info->player.py][info->player.px] = 'P';
+
 		info->counter++;
 	}
 }
@@ -105,7 +106,7 @@ int	_monster(info_t *info)
 
 	if ((info->player.py == info->monster.y )&& (info->player.px == info->monster.x))
 		show_message("Game Over :(\n", -1);
-	if (i == 1500)
+	if (i == 1000)
 	{
 		info->monster.path[info->monster.y][info->monster.x] = '0';
 		if (info->monster.path[info->monster.y][info->monster.x + 1] == 'P')
@@ -116,7 +117,19 @@ int	_monster(info_t *info)
 			animate_to_down(info, MONSTER_TO_BTM, &info->monster.x, &info->monster.y);
 		else if (info->monster.path[info->monster.y - 1][info->monster.x] == 'P')
 			animate_to_top(info, MONSTER_TO_TOP, &info->monster.x, &info->monster.y);
-
+		else if (info->monster.path[info->monster.y + 1][info->monster.x] == '0' && info->player.py > info->monster.y)
+			animate_to_down(info, MONSTER_TO_BTM, &info->monster.x, &info->monster.y);
+			//info->monster.path[info->monster.y + 1][info->monster.x] = 'P';
+		else if (info->monster.path[info->monster.y - 1][info->monster.x] == '0' && info->player.py < info->monster.y)
+			animate_to_top(info, MONSTER_TO_TOP, &info->monster.x, &info->monster.y);
+			//info->monster.path[info->monster.y - 1][info->monster.x] = 'P';
+		else if (info->monster.path[info->monster.y][info->monster.x + 1] == '0' && info->player.px > info->monster.x)
+			animate_to_right(info, MONSTER_TO_RIGHT, &info->monster.x, &info->monster.y);
+			//info->monster.path[info->monster.y][info->monster.x + 1] = 'P';
+		else if (info->monster.path[info->monster.y][info->monster.x - 1] == '0' && info->player.px < info->monster.x)
+			animate_to_left(info, MONSTER_TO_LEFT, &info->monster.x, &info->monster.y);
+			//info->monster.path[info->monster.y][info->monster.x - 1] = 'P';
+		prtmap(info->monster.path);
 		i = 0;
 	}
 	i++;

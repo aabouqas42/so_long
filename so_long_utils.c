@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/18 22:27:33 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:12:41 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ void	get_map_data(info_t *info)
 	info->monster.x = info->player.px;
 	info->hight = i;
 	info->width = ft_strlen((const char *)info->map[0]);
+}
+
+void	prtmap(char **map)
+{
+	int i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
 }
