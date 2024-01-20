@@ -6,37 +6,44 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:59:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/19 16:28:24 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:51:47 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	destroy(void *ptr)
+int	destroy(t_info *info)
 {
-	(void)ptr;
+	mlx_destroy_window(info->mlx_ptr, info->window);
+	mem_free(info->map);
+	mem_free(info->mons.path);
+	system("leaks so_long");
 	exit (0);
 }
 
-int	click_manager(int key_code, info_t *info)
+int	click_manager(int key, t_info *info)
 {
-	if (key_code == 53)
-		exit(0);
-	if ((key_code >= 123 && key_code <= 126) || (key_code >= 0 && key_code <= 3) || (key_code == 13))
+	char	*score;
+	int		x;
+
+	if (key == 53)
+		destroy(info);
+	if ((key >= 123 && key <= 126) || (key >= 0 && key <= 3) || (key == 13))
 	{
-		put_img(info, TOP,( info->width * 32) / 2, 0);
-		mlx_string_put(info->mlx_ptr, info->window, (info->width * 32) / 2, 0, 0xffffff, ft_itoa(info->counter));
-		//ft_printf("%d\n", info->counter);
-		mlx_loop_hook(info->mlx_ptr, _monster, info);
+		put_img(info, TOP, ((info->width * 32) / 2), 0);
+		score = ft_itoa(info->counter);
+		x = (info->width * 32) / 2;
+		mlx_string_put(info->mlx_ptr, info->window, x, 0, 0xffffff, score);
+		free (score);
+		mlx_loop_hook(info->mlx_ptr, _monster_mover, info);
 	}
-	if ((key_code == 126) || (key_code == 13))
+	if ((key == 126) || (key == 13))
 		to_top(info);
-	if ((key_code == 125) || key_code == 1)
+	if ((key == 125) || key == 1)
 		to_down(info);
-	if  ((key_code == 124) || (key_code == 2))
+	if ((key == 124) || (key == 2))
 		to_right(info);
-	if ((key_code == 123) || (key_code == 0))
+	if ((key == 123) || (key == 0))
 		to_left(info);
 	return (0);
 }
-

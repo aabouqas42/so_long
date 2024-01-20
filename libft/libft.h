@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:37:38 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/17 23:19:46 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:07:49 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-int	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 int		ft_isprint(int c);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -75,11 +75,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-int	ft_printf(const char *str, ...);
-int	ft_base(unsigned int num, char *base);
-int	ft_pointer(unsigned long p);
-int	ft_unsigned(unsigned int num);
-int	ft_putstr(char *str);
+int		ft_printf(const char *str, ...);
+int		ft_base(unsigned int num, char *base);
+int		ft_pointer(unsigned long p);
+int		ft_unsigned(unsigned int num);
+int		ft_putstr(char *str);
 
 char	*get_next_line(int fd);
 char	*app_end_bonus(char *str1, char *str2);

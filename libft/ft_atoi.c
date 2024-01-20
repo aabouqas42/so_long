@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:38:30 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/11/13 10:27:46 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:58:32 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ int	ft_atoi(const char *str)
 	while (*str && (*str >= '0' && *str <= '9'))
 	{
 		r = r * 10 + (*str - 48);
-		if((s == 1 && r < 0) || (s == -1 && (r * (-1)) > 0))
+		if ((s == 1 && r < 0) || (s == -1 && (r * (-1)) > 0))
 		{
-			if(s == 1)
-				return -1;
-			return 0;
+			if (s == 1)
+				return (-1);
+			return (0);
 		}
 		str++;
 	}
 	return (r * s);
 }
-

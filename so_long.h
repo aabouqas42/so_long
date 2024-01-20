@@ -6,12 +6,12 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/19 15:12:55 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:54:36 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _SO_LONG_H_
-# define _SO_LONG_H_
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -24,34 +24,36 @@
 # define TOP_RIGHT "textures/top_right.xpm"
 # define BOTTOM_LEFT "textures/bottom_left.xpm"
 # define BOTTOM_RIGHT "textures/bottom_right.xpm"
-# define HERO "textures/hero.xpm"
 # define TOP "textures/top_bottom.xpm"
-# define MONSTER_TO_RIGHT "textures/monster_to_right.xpm"
-# define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
-# define MONSTER_TO_BTM "textures/monster_to_bottom.xpm"
-# define MONSTER_TO_TOP "textures/monster_to_top.xpm"
-# define DOOR_OPNED "textures/door_opned.xpm"
-# define DOOR_CLOSED "textures/door_closed.xpm"
+# define M_TO_R "textures/monster_to_right.xpm"
+# define M_TO_L "textures/monster_to_left.xpm"
+# define M_TO_B "textures/monster_to_bottom.xpm"
+# define M_TO_T "textures/monster_to_top.xpm"
+# define OD "textures/door_opned.xpm"
+# define CD "textures/door_closed.xpm"
 # define PLYR_TLFT "textures/player_to_left.xpm"
 # define PLYR_TRGT "textures/player_to_right.xpm"
 # define PLYR_TLUP "textures/player_to_top.xpm"
 # define PLYR_TLDW "textures/player_to_down.xpm"
 
-typedef struct player_s {
+typedef struct s_player
+{
 	int		score;
 	int		dx;
 	int		dy;
 	int		px;
 	int		py;
-} player_t;
+}	t_player;
 
-typedef struct monster_s {
+typedef struct s_monster
+{
 	char	**path;
 	int		x;
 	int		y;
-} monster_t;
+}	t_monster;
 
-typedef struct info_s {
+typedef struct s_info
+{
 	void		*mlx_ptr;
 	void		*window;
 	char		*map_path;
@@ -64,40 +66,39 @@ typedef struct info_s {
 	int			coins;
 	int			valid;
 	size_t		counter;
-	player_t	player;
-	monster_t	monster;
-} info_t;
+	size_t		speed;
+	t_player	plyr;
+	t_monster	mons;
+}	t_info;
 
-
-void	show_message(char *message, int ret);
-void	get_win_info(info_t *mlx_data);
+void	show_message(t_info *info, char *message, int ret);
+void	get_win_info(t_info *info);
 void	mem_free(char **map);
-int		click_manager(int key_code, info_t *mlx_data);
-int		destroy(void *ptr);
-void	name_checker(char *map_name);
-void	map_checker(info_t mlx_data);
+int		click_manager(int key_code, t_info *info);
+int		destroy(t_info *info);
+void	name_checker(t_info *info);
+void	map_checker(t_info *info);
 size_t	map_size(int fd);
-char	**copy_map(char *map_path);
-int		open_file(char *file_path);
-void	*get_img(char *textuer_path, info_t *mlx_data);
-void	put_img(info_t *mlx_data, void *textuer_path, int x, int y);
-void	fill_map(info_t *mlx_data, char **map, void *textures);
-void	get_map_data(info_t *mlx_data);
-// void	get_coin_count(info_t *mlx_data);
-void	map_drawer(info_t *mlx_data);
-// int		check_point(char **map, int x, int y, int c);
-int		_monster(info_t *info);
-void	flood_fill(info_t *info);
-void	follow_me(info_t *info);
-void	to_top(info_t *mlx_data);
-void	to_down(info_t *mlx_data);
-void	to_left(info_t *mlx_data);
-void	to_right(info_t *mlx_data);
-void	animate_to_top(info_t *info, void *_char, int *x, int *y);
-void	animate_to_down(info_t *info, void *_char, int *x, int *y);
-void	animate_to_right(info_t *info, void *_char, int *x, int *y);
-void	animate_to_left(info_t *info, void *_char, int *x, int *y);
-
+char	**copy_map(t_info *info);
+int		open_file(t_info *info);
+void	*get_img(char *textuer_path, t_info *info);
+void	put_img(t_info *info, void *textuer_path, int x, int y);
+void	fill_map(t_info *info, char **map, void *textures);
+void	get_map_data(t_info *info);
+void	map_drawer(t_info *info);
+int		_monster_mover(t_info *info);
+int		check_char(char **map, int x, int y, char c);
+void	flood_fill(t_info *info);
+void	to_top(t_info *info);
+void	to_down(t_info *info);
+void	to_left(t_info *info);
+void	to_right(t_info *info);
+void	a_to_t(t_info *info, void *_char, int *x, int *y);
+void	a_to_d(t_info *info, void *_char, int *x, int *y);
+void	a_to_r(t_info *info, void *_char, int *x, int *y);
+void	a_to_l(t_info *info, void *_char, int *x, int *y);
+void	anim(t_info *info);
+void	_init(t_info *info, void *path);
 void	prtmap(char **map);
 
 #endif
