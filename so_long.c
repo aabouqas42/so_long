@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 03:24:41 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 06:55:49 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	map_drawer(t_info *info)
 	int		hight;
 	int		width;
 	int		i;
+	int		j;
 
 	fill_map(info, info->map, FLOOR);
 	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
@@ -91,10 +92,13 @@ void	map_drawer(t_info *info)
 	put_img(info, TOP_RIGHT, width, 0);
 	put_img(info, BOTTOM_LEFT, 0, hight);
 	put_img(info, BOTTOM_RIGHT, width, hight);
-	i = ((info->width / 2) * 32) - 32;
-	put_img(info, BG_SCOORE, i, 0);
-	put_img(info, BG_SCOORE, i + 32, 0);
-	put_img(info, BG_SCOORE, i + 64, 0);
+	i = ((info->width / 2) * 32) - 64;
+	j = i + 128;
+	while (i <= j)
+	{
+		put_img(info, BG_SCOORE, i, 0);
+		i += 32;
+	}
 }
 
 int	main(int ac, char *av[])
@@ -105,10 +109,12 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		info.map_path = av[1];
 		_init(&info);
-		get_map_data(&info);
+		info.map_path = av[1];
 		name_checker(&info);
+		info.map = copy_map(&info);
+		info.mons.path = copy_map(&info);
+		get_map_data(&info);
 		map_checker(&info);
 		flood_fill(&info);
 		hight = info.hight * 32;

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 03:19:46 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 04:31:08 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void	anim_to_right(t_info *info, void *_char, int *x, int *y);
 void	anim_to_left(t_info *info, void *_char, int *x, int *y);
 void	monster_animator(t_info *info);
 void	_init(t_info *info);
+void	show_clicks(t_info *info);
 
 #endif
