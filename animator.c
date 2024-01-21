@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:03:17 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:56:00 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 00:35:27 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,19 @@ void	a_to_l(t_info *info, void *_char, int *x, int *y)
 	}
 }
 
+// void	prtmap(char **map)
+// {
+// 	int i = 0;
+// 	while (map[i])
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
+
 int	_monster_mover(t_info *info)
 {
-	static size_t	i = 0;
+	static size_t	i;
 
 	if ((info->plyr.py == info->mons.y) && (info->plyr.px == info->mons.x))
 		show_message(info, "Game Over :(\n", -1);
@@ -78,7 +88,6 @@ int	_monster_mover(t_info *info)
 	{
 		info->mons.path[info->mons.y][info->mons.x] = '0';
 		anim(info);
-		prtmap(info->mons.path);
 		i = 0;
 	}
 	i++;

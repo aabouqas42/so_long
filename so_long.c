@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:52:04 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 00:42:41 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,15 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		_init(&info, av[1]);
+		info.map_path = av[1];
+		_init(&info);
 		get_map_data(&info);
 		name_checker(&info);
 		map_checker(&info);
 		flood_fill(&info);
 		hight = info.hight * 32;
 		width = info.width * 32;
+		info.mlx_ptr = mlx_init();
 		info.window = mlx_new_window(info.mlx_ptr, width, hight, "SO_LONG");
 		map_drawer(&info);
 		mlx_hook(info.window, 2, 0, click_manager, &info);

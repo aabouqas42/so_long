@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:57:24 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 00:42:46 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	show_message(t_info *info, char *message, int ret)
 {
-	(void)info;
-	(void)ret;
-	(void)show_message;
 	ft_printf(message);
 	mem_free(info->map);
 	mem_free(info->mons.path);
-	mlx_destroy_window(info->mlx_ptr, info->window);
+	if (info->mlx_ptr && info->window)
+		mlx_destroy_window(info->mlx_ptr, info->window);
 	exit(ret);
 }
 
@@ -73,13 +71,13 @@ void	get_map_data(t_info *info)
 	info->width = ft_strlen((const char *)info->map[0]);
 }
 
-void	_init(t_info *info, void *path)
+void	_init(t_info *info)
 {
-	info->mlx_ptr = mlx_init();
-	info->map_path = path;
 	info->map = copy_map(info);
 	info->mons.path = copy_map(info);
-	info->speed = 4500;
+	info->mlx_ptr = 0;
+	info->window = 0;
+	info->speed = 5000;
 	info->hight_img = 0;
 	info->width_img = 0;
 	info->coins = 0;

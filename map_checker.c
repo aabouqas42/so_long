@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:51:26 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 00:09:57 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,14 @@ void	map_checker(t_info *info)
 
 void	check(t_info *info, char **map, int start_x, int start_y)
 {
-	static int	checker = 0;
+	static int	checker = 1;
 
-	if (start_x < 0 || start_y < 0
-		|| start_x >= info->width || start_y >= info->hight)
+	if (map[start_y][start_x] == '1' || map[start_y][start_x] == 'V')
 		return ;
-	if (map[start_y][start_x] == 'V')
-		return ;
-	if (map[start_y][start_x] == 'E' && checker == 0)
+	if (map[start_y][start_x] == 'E' && checker)
 	{
 		info->valid++;
-		checker++;
+		checker--;
 		return ;
 	}
 	info->valid += (map[start_y][start_x] == 'C');

@@ -9,7 +9,7 @@ NAME = so_long
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-	$(CC) $(OBJ) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -L ./libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o : %.c $(HEADER)
 	make -C libft

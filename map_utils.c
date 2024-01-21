@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:56:16 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/20 23:53:19 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,14 @@ size_t	map_size(int fd)
 	if ((!line || !*line) || line[0] == '\n')
 	{
 		close (fd);
-		ft_printf("Error :\ninvalid map empty map really ???\n-_-\n");
+		ft_printf("Error :\nempty map really ??? -_-\n");
 		exit(-1);
 	}
-	len++;
-	free (line);
 	while (line)
 	{
-		line = get_next_line(fd);
-		free (line);
 		len++;
+		free (line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (len);

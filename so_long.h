@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:54:36 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 00:43:11 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	fill_map(t_info *info, char **map, void *textures);
 void	get_map_data(t_info *info);
 void	map_drawer(t_info *info);
 int		_monster_mover(t_info *info);
-int		check_char(char **map, int x, int y, char c);
 void	flood_fill(t_info *info);
 void	to_top(t_info *info);
 void	to_down(t_info *info);
@@ -98,7 +97,6 @@ void	a_to_d(t_info *info, void *_char, int *x, int *y);
 void	a_to_r(t_info *info, void *_char, int *x, int *y);
 void	a_to_l(t_info *info, void *_char, int *x, int *y);
 void	anim(t_info *info);
-void	_init(t_info *info, void *path);
-void	prtmap(char **map);
+void	_init(t_info *info);
 
 #endif
