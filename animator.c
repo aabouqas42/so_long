@@ -6,13 +6,13 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:03:17 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 00:35:27 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 01:37:06 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	a_to_t(t_info *info, void *_char, int *x, int *y)
+void	anim_to_top(t_info *info, void *_char, int *x, int *y)
 {
 	char	c;
 
@@ -26,7 +26,7 @@ void	a_to_t(t_info *info, void *_char, int *x, int *y)
 	}
 }
 
-void	a_to_d(t_info *info, void *_char, int *x, int *y)
+void	anim_to_bottom(t_info *info, void *_char, int *x, int *y)
 {
 	char	c;
 
@@ -40,7 +40,7 @@ void	a_to_d(t_info *info, void *_char, int *x, int *y)
 	}
 }
 
-void	a_to_r(t_info *info, void *_char, int *x, int *y)
+void	anim_to_right(t_info *info, void *_char, int *x, int *y)
 {
 	char	c;
 
@@ -54,7 +54,7 @@ void	a_to_r(t_info *info, void *_char, int *x, int *y)
 	}
 }
 
-void	a_to_l(t_info *info, void *_char, int *x, int *y)
+void	anim_to_left(t_info *info, void *_char, int *x, int *y)
 {
 	char	c;
 
@@ -68,26 +68,16 @@ void	a_to_l(t_info *info, void *_char, int *x, int *y)
 	}
 }
 
-// void	prtmap(char **map)
-// {
-// 	int i = 0;
-// 	while (map[i])
-// 	{
-// 		ft_printf("%s\n", map[i]);
-// 		i++;
-// 	}
-// }
-
 int	_monster_mover(t_info *info)
 {
-	static size_t	i;
+	static size_t	i = 0;
 
 	if ((info->plyr.py == info->mons.y) && (info->plyr.px == info->mons.x))
 		show_message(info, "Game Over :(\n", -1);
 	if (i >= info->speed)
 	{
 		info->mons.path[info->mons.y][info->mons.x] = '0';
-		anim(info);
+		monster_animator(info);
 		i = 0;
 	}
 	i++;

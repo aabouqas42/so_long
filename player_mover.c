@@ -28,9 +28,9 @@ void	to_top(t_info *info)
 				info->speed -= 100;
 			info->map[info->plyr.py - 1][info->plyr.px] = '0';
 			if (info->plyr.score == info->coins)
-				put_img(info, OD, info->plyr.dx * 32, info->plyr.dy * 32);
+				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
 		}
-		a_to_t(info, PLYR_TLUP, &info->plyr.px, &info->plyr.py);
+		anim_to_top(info, PLYR_TO_TOP, &info->plyr.px, &info->plyr.py);
 		info->mons.path[info->plyr.py][info->plyr.px] = 'P';
 		info->counter++;
 	}
@@ -52,9 +52,9 @@ void	to_down(t_info *info)
 				info->speed -= 100;
 			info->map[info->plyr.py + 1][info->plyr.px] = '0';
 			if (info->plyr.score == info->coins)
-				put_img(info, OD, (info->plyr.dx * 32), (info->plyr.dy * 32));
+				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
 		}
-		a_to_d(info, PLYR_TLDW, &info->plyr.px, &info->plyr.py);
+		anim_to_bottom(info, PLYR_TO_BOTTOM, &info->plyr.px, &info->plyr.py);
 		info->mons.path[info->plyr.py][info->plyr.px] = 'P';
 		info->counter++;
 	}
@@ -76,9 +76,9 @@ void	to_left(t_info *info)
 				info->speed -= 100;
 			info->map[info->plyr.py][info->plyr.px - 1] = '0';
 			if (info->plyr.score == info->coins)
-				put_img(info, OD, (info->plyr.dx * 32), (info->plyr.dy * 32));
+				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
 		}
-		a_to_l(info, PLYR_TLFT, &info->plyr.px, &info->plyr.py);
+		anim_to_left(info, PLYR_TO_LEFT, &info->plyr.px, &info->plyr.py);
 		info->mons.path[info->plyr.py][info->plyr.px] = 'P';
 		info->counter++;
 	}
@@ -100,34 +100,34 @@ void	to_right(t_info *info)
 				info->speed -= 100;
 			info->map[info->plyr.py][info->plyr.px + 1] = '0';
 			if (info->plyr.score == info->coins)
-				put_img(info, OD, info->plyr.dx * 32, info->plyr.dy * 32);
+				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
 		}
-		a_to_r(info, PLYR_TRGT, &info->plyr.px, &info->plyr.py);
+		anim_to_right(info, PLYR_TO_RIGHT, &info->plyr.px, &info->plyr.py);
 		info->mons.path[info->plyr.py][info->plyr.px] = 'P';
 		info->counter++;
 	}
 }
 
-void	anim(t_info *info)
+void	monster_animator(t_info *info)
 {
 	if (info->mons.path[info->mons.y][info->mons.x + 1] == 'P')
-		a_to_r(info, M_TO_R, &info->mons.x, &info->mons.y);
+		anim_to_right(info, MONSTER_TO_RIGHT, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y][info->mons.x - 1] == 'P')
-		a_to_l(info, M_TO_L, &info->mons.x, &info->mons.y);
+		anim_to_left(info, MONSTER_TO_LEFT, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y + 1][info->mons.x] == 'P')
-		a_to_d(info, M_TO_B, &info->mons.x, &info->mons.y);
+		anim_to_bottom(info, MONSTER_TO_BOTTOM, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y - 1][info->mons.x] == 'P')
-		a_to_t(info, M_TO_T, &info->mons.x, &info->mons.y);
+		anim_to_top(info, MONSTER_TO_TOP, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y + 1][info->mons.x] == '0'
 		&& info->plyr.py > info->mons.y)
-		a_to_d(info, M_TO_B, &info->mons.x, &info->mons.y);
+		anim_to_bottom(info, MONSTER_TO_BOTTOM, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y - 1][info->mons.x] == '0'
 		&& info->plyr.py < info->mons.y)
-		a_to_t(info, M_TO_T, &info->mons.x, &info->mons.y);
+		anim_to_top(info, MONSTER_TO_TOP, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y][info->mons.x + 1] == '0'
 		&& info->plyr.px > info->mons.x)
-		a_to_r(info, M_TO_R, &info->mons.x, &info->mons.y);
+		anim_to_right(info, MONSTER_TO_RIGHT, &info->mons.x, &info->mons.y);
 	else if (info->mons.path[info->mons.y][info->mons.x - 1] == '0'
 		&& info->plyr.px < info->mons.x)
-		a_to_l(info, M_TO_L, &info->mons.x, &info->mons.y);
+		anim_to_left(info, MONSTER_TO_LEFT, &info->mons.x, &info->mons.y);
 }

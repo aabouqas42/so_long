@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 00:42:41 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:24:41 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fill_map(t_info *info, char **map, void *textures)
 			if (map[i][j] == 'C')
 				put_img(info, "textures/coins.xpm", width, hight);
 			if (map[i][j] == 'E')
-				put_img(info, CD, width, hight);
+				put_img(info, CLOSED, width, hight);
 			j++;
 			width += 32;
 		}
@@ -79,11 +79,10 @@ void	map_drawer(t_info *info)
 {
 	int		hight;
 	int		width;
+	int		i;
 
-	hight = 0;
-	width = 0;
 	fill_map(info, info->map, FLOOR);
-	put_img(info, PLYR_TLDW, info->plyr.px * 32, info->plyr.py * 32);
+	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
 	fill_top_bottom(info);
 	fill_right_left(info);
 	hight = ((info->hight * 32) - 32);
@@ -92,6 +91,10 @@ void	map_drawer(t_info *info)
 	put_img(info, TOP_RIGHT, width, 0);
 	put_img(info, BOTTOM_LEFT, 0, hight);
 	put_img(info, BOTTOM_RIGHT, width, hight);
+	i = ((info->width / 2) * 32) - 32;
+	put_img(info, BG_SCOORE, i, 0);
+	put_img(info, BG_SCOORE, i + 32, 0);
+	put_img(info, BG_SCOORE, i + 64, 0);
 }
 
 int	main(int ac, char *av[])

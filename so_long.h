@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 00:43:11 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:19:46 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@
 # define BOTTOM_LEFT "textures/bottom_left.xpm"
 # define BOTTOM_RIGHT "textures/bottom_right.xpm"
 # define TOP "textures/top_bottom.xpm"
-# define M_TO_R "textures/monster_to_right.xpm"
-# define M_TO_L "textures/monster_to_left.xpm"
-# define M_TO_B "textures/monster_to_bottom.xpm"
-# define M_TO_T "textures/monster_to_top.xpm"
-# define OD "textures/door_opned.xpm"
-# define CD "textures/door_closed.xpm"
-# define PLYR_TLFT "textures/player_to_left.xpm"
-# define PLYR_TRGT "textures/player_to_right.xpm"
-# define PLYR_TLUP "textures/player_to_top.xpm"
-# define PLYR_TLDW "textures/player_to_down.xpm"
+# define MONSTER_TO_RIGHT "textures/monster_to_right.xpm"
+# define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
+# define MONSTER_TO_BOTTOM "textures/monster_to_bottom.xpm"
+# define MONSTER_TO_TOP "textures/monster_to_top.xpm"
+# define OPNED "textures/door_opned.xpm"
+# define CLOSED "textures/door_closed.xpm"
+# define PLYR_TO_LEFT "textures/player_to_left.xpm"
+# define PLYR_TO_RIGHT "textures/player_to_right.xpm"
+# define PLYR_TO_TOP "textures/player_to_top.xpm"
+# define PLYR_TO_BOTTOM "textures/player_to_down.xpm"
+# define BG_SCOORE "textures/bg_scoore.xpm"
 
 typedef struct s_player
 {
@@ -92,11 +93,11 @@ void	to_top(t_info *info);
 void	to_down(t_info *info);
 void	to_left(t_info *info);
 void	to_right(t_info *info);
-void	a_to_t(t_info *info, void *_char, int *x, int *y);
-void	a_to_d(t_info *info, void *_char, int *x, int *y);
-void	a_to_r(t_info *info, void *_char, int *x, int *y);
-void	a_to_l(t_info *info, void *_char, int *x, int *y);
-void	anim(t_info *info);
+void	anim_to_top(t_info *info, void *_char, int *x, int *y);
+void	anim_to_bottom(t_info *info, void *_char, int *x, int *y);
+void	anim_to_right(t_info *info, void *_char, int *x, int *y);
+void	anim_to_left(t_info *info, void *_char, int *x, int *y);
+void	monster_animator(t_info *info);
 void	_init(t_info *info);
 
 #endif

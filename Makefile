@@ -4,20 +4,24 @@ SRC = so_long.c map_checker.c so_long_utils.c programe_closer.c image_manager.c 
 OBJ = $(SRC:.c=.o)
 HEADER = so_long.h
 NAME = so_long
+LIBFT = libft/libft.a
 
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	$(CC) $(OBJ) -L ./libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+$(LIBFT):
+	make -C libft
 
 %.o : %.c $(HEADER)
-	make -C libft
-	$(CC) $(CFLAGS) -Imlx -c $<
+	$(CC) $(CFLAGS) -c $<
 
 re: fclean all
 
 fclean: clean
+	rm $(LIBFT)
 	rm -f $(NAME)
 
 clean:

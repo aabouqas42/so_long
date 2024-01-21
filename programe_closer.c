@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:59:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:51:47 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:29:38 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	destroy(t_info *info)
 {
-	mlx_destroy_window(info->mlx_ptr, info->window);
 	mem_free(info->map);
 	mem_free(info->mons.path);
-	system("leaks so_long");
+	if (info->mlx_ptr && info->window)
+		mlx_destroy_window(info->mlx_ptr, info->window);
 	exit (0);
 }
 
@@ -30,7 +30,7 @@ int	click_manager(int key, t_info *info)
 		destroy(info);
 	if ((key >= 123 && key <= 126) || (key >= 0 && key <= 3) || (key == 13))
 	{
-		put_img(info, TOP, ((info->width * 32) / 2), 0);
+		put_img(info, BG_SCOORE, ((info->width * 32) / 2), 0);
 		score = ft_itoa(info->counter);
 		x = (info->width * 32) / 2;
 		mlx_string_put(info->mlx_ptr, info->window, x, 0, 0xffffff, score);
