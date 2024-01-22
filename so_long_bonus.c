@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 02:42:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 01:36:04 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/so_long.h"
+#include "bonus_utils/so_long_bonus.h"
 
 void	fill_map(t_info *info, char **map, void *textures)
 {
@@ -79,6 +79,8 @@ void	map_drawer(t_info *info)
 {
 	int		hight;
 	int		width;
+	int		i;
+	int		j;
 
 	fill_map(info, info->map, FLOOR);
 	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
@@ -90,6 +92,13 @@ void	map_drawer(t_info *info)
 	put_img(info, TOP_RIGHT, width, 0);
 	put_img(info, BOTTOM_LEFT, 0, hight);
 	put_img(info, BOTTOM_RIGHT, width, hight);
+	i = ((info->width / 2) * 32) - 64;
+	j = i + 128;
+	while (i <= j)
+	{
+		put_img(info, BG_SCOORE, i, 0);
+		i += 32;
+	}
 }
 
 int	main(int ac, char *av[])
@@ -104,6 +113,7 @@ int	main(int ac, char *av[])
 		info.map_path = av[1];
 		name_checker(&info);
 		info.map = copy_map(&info);
+		info.mons.path = copy_map(&info);
 		get_map_data(&info);
 		map_checker(&info);
 		flood_fill(&info);
@@ -114,6 +124,7 @@ int	main(int ac, char *av[])
 		map_drawer(&info);
 		mlx_hook(info.window, 2, 0, click_manager, &info);
 		mlx_hook(info.window, 17, 0, destroy, &info);
+		mlx_loop_hook(info.mlx_ptr, coin_flipper, &info);
 		mlx_loop(info.mlx_ptr);
 	}
 }
