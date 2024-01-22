@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:47:59 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:19:30 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	_init(t_info *info)
 	info->window = NULL;
 	info->map = NULL;
 	info->mons.path = NULL;
-	info->speed = 3000;
+	info->speed = 2500;
 	info->plyr.score = 0;
 	info->plyr.py = 0;
 	info->plyr.px = 0;

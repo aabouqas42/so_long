@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:50:49 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:17:36 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	map_checker(t_info *info)
 		while (info->map[i][j])
 		{
 			if (ft_strchr("01ECP", info->map[i][j]) == 0)
-				show_msg(info, "Error :\nInvalid map :(\n", -1);
+				show_msg(info, "Error :\nAllowed chars: \"01ECP\" :(\n", -1);
 			player += (info->map[i][j] == 'P');
 			coins += (info->map[i][j] == 'C');
 			exit += (info->map[i][j] == 'E');
