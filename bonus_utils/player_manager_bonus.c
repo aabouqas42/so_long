@@ -25,7 +25,7 @@ void	to_top(t_info *info)
 		{
 			info->plyr.score++;
 			if (info->speed > 1200)
-				info->speed -= 100;
+				info->speed -= 20;
 			info->map[info->plyr.py - 1][info->plyr.px] = '0';
 			if (info->plyr.score == info->coins)
 				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
@@ -50,7 +50,7 @@ void	to_down(t_info *info)
 		{
 			info->plyr.score++;
 			if (info->speed > 1200)
-				info->speed -= 100;
+				info->speed -= 20;
 			info->map[info->plyr.py + 1][info->plyr.px] = '0';
 			if (info->plyr.score == info->coins)
 				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
@@ -75,7 +75,7 @@ void	to_left(t_info *info)
 		{
 			info->plyr.score++;
 			if (info->speed > 1200)
-				info->speed -= 100;
+				info->speed -= 20;
 			info->map[info->plyr.py][info->plyr.px - 1] = '0';
 			if (info->plyr.score == info->coins)
 				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);
@@ -100,7 +100,7 @@ void	to_right(t_info *info)
 		{
 			info->plyr.score++;
 			if (info->speed > 1200)
-				info->speed -= 100;
+				info->speed -= 20;
 			info->map[info->plyr.py][info->plyr.px + 1] = '0';
 			if (info->plyr.score == info->coins)
 				put_img(info, OPNED, info->plyr.dx * 32, info->plyr.dy * 32);

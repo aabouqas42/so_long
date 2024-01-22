@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 01:36:04 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 19:20:40 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	main(int ac, char *av[])
 		info.mlx_ptr = mlx_init();
 		info.window = mlx_new_window(info.mlx_ptr, width, hight, "SO_LONG");
 		map_drawer(&info);
+		show_clicks(&info);
 		mlx_hook(info.window, 2, 0, click_manager, &info);
 		mlx_hook(info.window, 17, 0, destroy, &info);
 		mlx_loop_hook(info.mlx_ptr, coin_flipper, &info);
