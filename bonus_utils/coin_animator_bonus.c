@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 23:52:46 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 23:54:10 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:03:57 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ char	*get_frame(int time)
 
 	if (time == 0)
 		frame = "textures/coins/c1.xpm";
-	if (time == 1)
-		frame  = "textures/coins/c2.xpm";
-	if (time == 2)
+	else if (time == 1)
+		frame = "textures/coins/c2.xpm";
+	else if (time == 2)
 		frame = "textures/coins/c3.xpm";
-	if (time == 3)
+	else if (time == 3)
 		frame = "textures/coins/c4.xpm";
-	if (time == 4)
+	else
 		frame = "textures/coins/c5.xpm";
 	return (frame);
 }
@@ -40,7 +40,7 @@ void	coin_animator(t_info *info, int time)
 		j = 1;
 		while (info->map[i][j])
 		{
-			if (info->map[i][j] == 'C' && j  < (ft_strlen(info->map[i]) - 1))
+			if (info->map[i][j] == 'C' && j < (ft_strlen(info->map[i]) - 1))
 			{
 				put_img(info, FLOOR, j * 32, i * 32);
 				put_img(info, get_frame(time), j * 32, i * 32);
@@ -56,9 +56,10 @@ int	coin_flipper(t_info *info)
 	static int		time = 0;
 	static size_t	n = 0;
 
-	if (n == 800)
+	if (n == 700)
 	{
-		coin_animator(info, time);
+		if (info->plyr.score <= info->coins)
+			coin_animator(info, time);
 		time++;
 		if (time == 5)
 			time = 0;

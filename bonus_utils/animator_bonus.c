@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:03:17 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 23:53:18 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:47:27 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,11 @@ int	_monster_mover(t_info *info)
 {
 	static size_t	i = 0;
 
-	if ((info->plyr.py == info->mons.y) && (info->plyr.px == info->mons.x))
-		show_message(info, "Game Over :(\n", -1);
+	if ((info->plyr.py == info->mons.y)
+		&& (info->plyr.px == info->mons.x) && info->counter >= 3)
+		show_msg(info, "Game Over :(\n", -1);
 	coin_flipper(info);
-	if (i >= info->speed && info->counter > 3)
+	if (i >= info->speed && info->counter >= 3)
 	{
 		info->mons.path[info->mons.y][info->mons.x] = '0';
 		monster_animator(info);

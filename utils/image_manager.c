@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:56:51 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/21 05:00:52 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:47:54 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*get_img(char *textuer_path, t_info *info)
 	image = mlx_xpm_file_to_image(info->mlx_ptr, textuer_path,
 			&info->width_img, &info->hight_img);
 	if (image == NULL)
-		show_message(info, "Error :\nwrong texture path :(\n", -1);
+		show_msg(info, "Error :\nwrong texture path :(\n", -1);
 	return (image);
 }
 

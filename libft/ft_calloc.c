@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:21:00 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/11/12 21:24:05 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 05:43:54 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	*ft_calloc(size_t count, size_t size)
 	if (!ptr)
 		return (NULL);
 	while (i < (count * size))
-		ptr[i++] = 0;
+	{
+		ptr[i] = 0;
+		i++;
+	}
 	return (ptr);
 }

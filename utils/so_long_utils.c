@@ -6,13 +6,13 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 00:21:59 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:48:27 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	show_message(t_info *info, char *message, int ret)
+void	show_msg(t_info *info, char *message, int ret)
 {
 	ft_printf(message);
 	if (info->map)
@@ -28,7 +28,7 @@ int	open_file(t_info *info)
 
 	fd = open(info->map_path, O_RDONLY);
 	if (fd == -1)
-		show_message(info, "Error :\nCannot open file :(\n", -1);
+		show_msg(info, "Error :\nCannot open file :(\n", -1);
 	return (fd);
 }
 
@@ -62,6 +62,12 @@ void	_init(t_info *info)
 {
 	info->mlx_ptr = NULL;
 	info->window = NULL;
+	info->map = NULL;
+	info->plyr.score = 0;
+	info->plyr.py = 0;
+	info->plyr.px = 0;
+	info->plyr.dx = 0;
+	info->plyr.dy = 0;
 	info->hight_img = 0;
 	info->width_img = 0;
 	info->coins = 0;

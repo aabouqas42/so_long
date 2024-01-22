@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 01:43:35 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:48:34 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_info
 	t_player	plyr;
 }	t_info;
 
-void	show_message(t_info *info, char *message, int ret);
+void	show_msg(t_info *info, char *message, int ret);
 void	mem_free(char **map);
 int		click_manager(int key_code, t_info *info);
 int		destroy(t_info *info);

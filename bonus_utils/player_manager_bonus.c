@@ -18,8 +18,8 @@ void	to_top(t_info *info)
 
 	c = info->map[info->plyr.py - 1][info->plyr.px];
 	if (c == 'E' && info->plyr.score == info->coins)
-		show_message(info, "Congratulation You won :)\n", 0);
-	if (c == '0' || c == 'C')
+		show_msg(info, "Congratulation You won :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
 	{
 		if (c == 'C')
 		{
@@ -43,8 +43,8 @@ void	to_down(t_info *info)
 
 	c = info->map[info->plyr.py + 1][info->plyr.px];
 	if (c == 'E' && info->plyr.score == info->coins)
-		show_message(info, "Congratulation You won :)\n", 0);
-	if (c == '0' || c == 'C')
+		show_msg(info, "Congratulation You won :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
 	{
 		if (c == 'C')
 		{
@@ -68,8 +68,8 @@ void	to_left(t_info *info)
 
 	c = info->map[info->plyr.py][info->plyr.px - 1];
 	if (c == 'E' && info->plyr.score == info->coins)
-		show_message(info, "Congratulation You won :)\n", 0);
-	if (c == '0' || c == 'C')
+		show_msg(info, "Congratulation You won :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
 	{
 		if (c == 'C')
 		{
@@ -93,8 +93,8 @@ void	to_right(t_info *info)
 
 	c = info->map[info->plyr.py][info->plyr.px + 1];
 	if (c == 'E' && info->plyr.score == info->coins)
-		show_message(info, "Congratulation You won :)\n", 0);
-	if (c == '0' || c == 'C')
+		show_msg(info, "Congratulation You won :)\n", 0);
+	if (c == '0' || c == 'C' || c == 'P')
 	{
 		if (c == 'C')
 		{

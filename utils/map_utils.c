@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/20 23:53:19 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:48:16 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	mem_free(char **map)
 
 	i = 0;
 	while (map[i])
-		free (map[i++]);
+	{
+		free (map[i]);
+		i++;
+	}
 	free(map);
 }
 
@@ -55,7 +58,7 @@ char	**copy_map(t_info *info)
 	size = map_size(open_file(info)) + 1;
 	map = malloc (size * sizeof(char *));
 	if (map == NULL)
-		show_message(info, "Error !\n", -1);
+		show_msg(info, "Error !\n", -1);
 	fd = open_file(info);
 	i = 0;
 	while (i < size)
