@@ -11,7 +11,7 @@
 ## 4: Run the program and pass a map path as parameter:
   - *Example* : `./so_long maps/map1.ber`
 ## Note !:
-##  - You can creat your own map using *"01ECP"* characters in a *.ber* file
+##  - You can creat your own map using `"01ECP"` characters in a `.ber` file
   - *0* : For free space
   - *1* : For wall
   - *E* : Exit door
