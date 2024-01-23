@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 12:03:52 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:30:33 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_wall(t_info *info)
 	while (i < info->width)
 	{
 		if (info->map[0][i] != '1' || info->map[info->hight - 1][i] != '1')
-			show_msg(info,  "Error :\nInvalid wall :(\n", -1);
+			show_msg(info, "Error :\nInvalid wall :(\n", -1);
 		i++;
 	}
 }
