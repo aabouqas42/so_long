@@ -6,7 +6,7 @@
 #    By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 05:49:16 by aabouqas          #+#    #+#              #
-#    Updated: 2024/01/22 05:49:30 by aabouqas         ###   ########.fr        #
+#    Updated: 2024/01/23 08:52:49 by aabouqas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,4 +88,4 @@ fclean: clean
 clean:
 	rm -f $(OBJ) $(BONUSOBJ)
 
-.PHONY : clean fclean
+.PHONY : clean

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:57:19 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/11/07 19:48:07 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 08:50:24 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	p = (char *)s;
 	i = 0;
-	while (n)
+	while (i < n)
 	{
-		if (*p == (char)c)
-			return (p);
-		n--;
-		p++;
+		if (p[i] == (char)c)
+			return (&p[i]);
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
