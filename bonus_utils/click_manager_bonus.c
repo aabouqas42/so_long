@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:59:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 00:50:05 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:36:13 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	show_clicks(t_info *info)
 	i = x_floor + 128;
 	while (x_floor <= i)
 	{
-		put_img(info, BG_SCOORE, x_floor, 0);
+		put_img(info, "textures/bg_scoore.xpm", x_floor, 0);
 		x_floor += 32;
 	}
 	mlx_string_put(info->mlx_ptr, info->window, x_scoore, 0, 0xffffff, score);

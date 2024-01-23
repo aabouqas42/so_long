@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 22:03:25 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:35:52 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	map_drawer(t_info *info)
 {
 	int		hight;
 	int		width;
-	int		i;
-	int		j;
 
 	fill_map(info, info->map, FLOOR);
 	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
@@ -87,13 +85,6 @@ void	map_drawer(t_info *info)
 	put_img(info, TOP_RIGHT, width, 0);
 	put_img(info, BOTTOM_LEFT, 0, hight);
 	put_img(info, BOTTOM_RIGHT, width, hight);
-	i = ((info->width / 2) * 32) - 64;
-	j = i + 128;
-	while (i <= j)
-	{
-		put_img(info, BG_SCOORE, i, 0);
-		i += 32;
-	}
 	show_clicks(info);
 }
 

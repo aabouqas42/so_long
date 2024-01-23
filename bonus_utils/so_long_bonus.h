@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 19:14:05 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:36:20 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define PLYR_TO_RIGHT "textures/player_to_right.xpm"
 # define PLYR_TO_TOP "textures/player_to_top.xpm"
 # define PLYR_TO_BOTTOM "textures/player_to_down.xpm"
-# define BG_SCOORE "textures/bg_scoore.xpm"
 
 typedef struct s_player
 {
