@@ -16,5 +16,5 @@
   - *1* : For wall
   - *E* : Exit door
   - *C* : Coins
-  - *P* " Player position
+  - *P* : Player position
 ## 5: enjoy :)
