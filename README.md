@@ -5,9 +5,10 @@
 
 # Setup :
 ## 1: Clone this repo
-## 2: Enter to 'so_long' folder
+## 2: Enter to *so_long* folder
 ## 3: Extract The executable file :
-##   run 'make' or 'make bonus' for advanced features.
+##   run `make` or `make bonus` for advanced features.
 ## 4: Run the program and pass a map path as parameter:
-##   Example : './so_long maps/map1.ber'
+##   Example : `./so_long maps/map1.ber`
+-[x] test
 ## 5: enjoy :)
