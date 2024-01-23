@@ -6,7 +6,7 @@
 #    By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/21 21:11:34 by aabouqas          #+#    #+#              #
-#    Updated: 2024/01/23 19:12:30 by aabouqas         ###   ########.fr        #
+#    Updated: 2024/01/23 19:26:59 by aabouqas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ $(NAME): $(LIBFT) $(OBJ)
 
 utils/%.o: utils/%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
-	echo "asd25345asd"
 
 bonus: $(BONUS)
 
