@@ -7,8 +7,14 @@
 ## 1: Clone this repo
 ## 2: Enter to *so_long* folder
 ## 3: Extract The executable file :
-  - run `make` or `make bonus` for advanced features.
+  - *Run* `make` *or* `make bonus` *for advanced features.*
 ## 4: Run the program and pass a map path as parameter:
-##   Example : `./so_long maps/map1.ber`
-- [x] test
+  - *Example* : `./so_long maps/map1.ber`
+## Note !:
+##  - You can creat your own map using *"01ECP"* characters in a *.ber* file
+  - *0* For free space
+  - *1* For wall
+  - *E* Exit door
+  - *C* Coins
+  - *P* Player position
 ## 5: enjoy :)
