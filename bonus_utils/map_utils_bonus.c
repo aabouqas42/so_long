@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:47:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:46:27 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	map_size(int fd)
 	if ((!line || !*line) || line[0] == '\n')
 	{
 		close (fd);
-		ft_printf("Error :\nempty map really ??? -_-\n");
+		ft_printf("Error :\nInvalid map :(\n");
 		exit(-1);
 	}
 	while (line)
@@ -55,10 +55,14 @@ char	**copy_map(t_info *info)
 	size_t	size;
 	size_t	i;
 
-	size = map_size(open_file(info)) + 1;
+	fd = open_file(info);
+	size = map_size(fd) + 1;
 	map = malloc (size * sizeof(char *));
 	if (map == NULL)
-		show_msg(info, "Error !\n", -1);
+	{
+		close (fd);
+		show_msg(info, "Error :\nunexpected error :(\n", -1);
+	}
 	fd = open_file(info);
 	i = 0;
 	while (i < size)
