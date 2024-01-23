@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:50:35 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:42:40 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,13 @@
 
 void	name_checker(t_info *info)
 {
-	const char	*extension;
-	int			i;
-	int			j;
+	int	size;
 
-	extension = ".ber";
-	i = ft_strlen((const char *)info->map_path) - 1;
-	j = ft_strlen(extension) - 1;
-	while (info->map_path[i] && j != 0)
+	size = ft_strlen((const char *)info->map_path);
+	if (ft_strcmp(ft_strnstr(info->map_path, ".ber", size), ".ber") != 0)
 	{
-		if (info->map_path[i] != extension[j])
-		{
-			ft_printf("Error :\ninvalid file :(\n");
-			exit(-1);
-		}
-		j--;
-		i--;
+		ft_printf("Error :\nInvalid file name :(\n");
+		exit (-1);
 	}
 }
 

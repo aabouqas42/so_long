@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:47:49 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:24:30 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_info
 	char		*map_path;
 	int			width;
 	int			hight;
+	int			win_w;
+	int			win_h;
 	void		*image;
 	char		**map;
 	int			width_img;

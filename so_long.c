@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 02:42:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:49:09 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,25 +95,23 @@ void	map_drawer(t_info *info)
 int	main(int ac, char *av[])
 {
 	t_info	info;
-	int		width;
-	int		hight;
 
-	if (ac == 2)
+	if (ac != 2)
 	{
-		_init(&info);
-		info.map_path = av[1];
-		name_checker(&info);
-		info.map = copy_map(&info);
-		get_map_data(&info);
-		map_checker(&info);
-		flood_fill(&info);
-		hight = info.hight * 32;
-		width = info.width * 32;
-		info.mlx_ptr = mlx_init();
-		info.window = mlx_new_window(info.mlx_ptr, width, hight, "SO_LONG");
-		map_drawer(&info);
-		mlx_hook(info.window, 2, 0, click_manager, &info);
-		mlx_hook(info.window, 17, 0, destroy, &info);
-		mlx_loop(info.mlx_ptr);
+		ft_printf("Error :\nInvalid args\nExample : %s /path/to/map", av[0]);
+		exit(-1);
 	}
+	_init(&info);
+	info.map_path = av[1];
+	name_checker(&info);
+	info.map = copy_map(&info);
+	get_map_data(&info);
+	map_checker(&info);
+	flood_fill(&info);
+	info.mlx_ptr = mlx_init();
+	info.window = mlx_new_window(info.mlx_ptr, info.win_w, info.win_h, av[0]);
+	map_drawer(&info);
+	mlx_hook(info.window, 2, 0, click_manager, &info);
+	mlx_hook(info.window, 17, 0, destroy, &info);
+	mlx_loop(info.mlx_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:48:27 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:19:57 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	get_map_data(t_info *info)
 	}
 	info->hight = i;
 	info->width = ft_strlen((const char *)info->map[0]);
+	info->win_w = info->width * 32;
+	info->win_h = info->hight * 32;
 }
 
 void	_init(t_info *info)
@@ -63,6 +65,8 @@ void	_init(t_info *info)
 	info->mlx_ptr = NULL;
 	info->window = NULL;
 	info->map = NULL;
+	info->win_w = 0;
+	info->win_h = 0;
 	info->plyr.score = 0;
 	info->plyr.py = 0;
 	info->plyr.px = 0;

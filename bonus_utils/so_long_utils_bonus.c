@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/22 17:19:30 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:28:53 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	get_map_data(t_info *info)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	i = 0;
 	while (info->map[i])
@@ -46,12 +45,11 @@ void	get_map_data(t_info *info)
 		j = 0;
 		while (info->map[i][j])
 		{
-			c = info->map[i][j];
-			info->plyr.py = ((c == 'P') * i) + info->plyr.py;
-			info->plyr.px = ((c == 'P') * j) + info->plyr.px;
-			info->plyr.dy = ((c == 'E') * i) + info->plyr.dy;
-			info->plyr.dx = ((c == 'E') * j) + info->plyr.dx;
-			info->coins += (c == 'C');
+			info->plyr.py = ((info->map[i][j] == 'P') * i) + info->plyr.py;
+			info->plyr.px = ((info->map[i][j] == 'P') * j) + info->plyr.px;
+			info->plyr.dy = ((info->map[i][j] == 'E') * i) + info->plyr.dy;
+			info->plyr.dx = ((info->map[i][j] == 'E') * j) + info->plyr.dx;
+			info->coins += (info->map[i][j] == 'C');
 			j++;
 		}
 		i++;
@@ -60,6 +58,8 @@ void	get_map_data(t_info *info)
 	info->mons.x = info->plyr.px;
 	info->hight = i;
 	info->width = ft_strlen((const char *)info->map[0]);
+	info->win_w = info->width * 32;
+	info->win_h = info->hight * 32;
 }
 
 void	_init(t_info *info)
