@@ -6,7 +6,7 @@
 #    By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/21 21:11:34 by aabouqas          #+#    #+#              #
-#    Updated: 2024/01/23 18:56:03 by aabouqas         ###   ########.fr        #
+#    Updated: 2024/01/24 18:21:56 by aabouqas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 utils/%.o: utils/%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(BONUS)
 
@@ -42,7 +42,7 @@ $(BONUS): $(LIBFT) $(BONUS_OBJ)
 	$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(BONUS)
 
 bonus_utils/%.o: bonus_utils/%.c $(HEADER_BONUS)
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	make -C libft

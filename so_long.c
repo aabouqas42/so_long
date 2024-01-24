@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 16:28:02 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:26:06 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 void	fill_map(t_info *info, char **map, void *textures)
 {
-	static int	width;
-	static int	hight;
-	static int	i;
-	static int	j;
+	static int	x;
+	static int	y;
 
-	while (map[i])
+	while (map[y])
 	{
-		j = 0;
-		width = 0;
-		while (map[i][j] && map[i][j] != '\n')
+		x = 0;
+		while (map[y][x] && map[y][x] != '\n')
 		{
-			put_img(info, textures, width, hight);
-			if (map[i][j] == '1' && (i > 0
-				&& i < info->hight) && (j > 0 && j < info->width))
-				put_img(info, "textures/wall.xpm", width, hight);
-			if (map[i][j] == 'C')
-				put_img(info, "textures/coins.xpm", width, hight);
-			if (map[i][j] == 'E')
-				put_img(info, CLOSED, width, hight);
-			j++;
-			width += 32;
+			put_img(info, textures, x * 32, y * 32);
+			if (map[y][x] == '1' && (y > 0
+				&& y < info->hight) && (x > 0 && x < info->width))
+				put_img(info, "textures/wall.xpm", x * 32, y * 32);
+			if (map[y][x] == 'C')
+				put_img(info, "textures/coins.xpm", x * 32, y * 32);
+			if (map[y][x] == 'E')
+				put_img(info, CLOSED, x * 32, y * 32);
+			x++;
 		}
-		i++;
-		hight += 32;
+		y++;
 	}
 }
 
@@ -111,6 +106,7 @@ int	main(int ac, char **av)
 	info.mlx_ptr = mlx_init();
 	info.window = mlx_new_window(info.mlx_ptr, info.win_w, info.win_h, av[0]);
 	map_drawer(&info);
+	ft_printf("%d\n", info.counter);
 	mlx_hook(info.window, 2, 0, click_manager, &info);
 	mlx_hook(info.window, 17, 0, destroy, &info);
 	mlx_loop(info.mlx_ptr);
