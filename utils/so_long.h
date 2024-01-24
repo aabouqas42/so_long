@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 22:37:19 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:51:34 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,26 @@
 # include <errno.h>
 # include <mlx.h>
 
+
+
+
 # define FLOOR "textures/floor.xpm"
 # define TOP_LEFT "textures/top_left.xpm"
 # define TOP_RIGHT "textures/top_right.xpm"
 # define BOTTOM_LEFT "textures/bottom_left.xpm"
 # define BOTTOM_RIGHT "textures/bottom_right.xpm"
 # define TOP "textures/top_bottom.xpm"
+# define MONSTER_TO_RIGHT "textures/monster_to_right.xpm"
+# define MONSTER_TO_LEFT "textures/monster_to_left.xpm"
+# define MONSTER_TO_BOTTOM "textures/monster_to_bottom.xpm"
+# define MONSTER_TO_TOP "textures/monster_to_top.xpm"
 # define OPNED "textures/door_opned.xpm"
 # define CLOSED "textures/door_closed.xpm"
 # define PLYR_TO_LEFT "textures/player_to_left.xpm"
 # define PLYR_TO_RIGHT "textures/player_to_right.xpm"
 # define PLYR_TO_TOP "textures/player_to_top.xpm"
 # define PLYR_TO_BOTTOM "textures/player_to_down.xpm"
+# define BG_SCOORE "textures/bg_scoore.xpm"
 
 typedef struct s_player
 {

@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 22:35:52 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:38:32 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,30 @@
 
 void	fill_map(t_info *info, char **map, void *textures)
 {
-	static int	y;
-	static int	x;
+	static int	width;
+	static int	hight;
+	static int	i;
+	static int	j;
 
-	while (map[y])
+	while (map[i])
 	{
-		x = 0;
-		while (map[y][x] && map[y][x] != '\n')
+		j = 0;
+		width = 0;
+		while (map[i][j] && map[i][j] != '\n')
 		{
-			put_img(info, textures, x * 32, y * 32);
-			if (map[y][x] == '1' && (y > 0 && y < info->hight)
-				&& (x > 0 && x < info->width))
-				put_img(info, "textures/wall.xpm", x * 32, y * 32);
-			if (map[y][x] == 'C')
-				put_img(info, "textures/coins.xpm", x * 32, y * 32);
-			if (map[y][x] == 'E')
-				put_img(info, CLOSED, x * 32, y * 32);
-			x++;
+			put_img(info, textures, width, hight);
+			if (map[i][j] == '1' && (i > 0
+				&& i < info->hight) && (j > 0 && j < info->width))
+				put_img(info, "textures/wall.xpm", width, hight);
+			if (map[i][j] == 'C')
+				put_img(info, "textures/coins.xpm", width, hight);
+			if (map[i][j] == 'E')
+				put_img(info, CLOSED, width, hight);
+			j++;
+			width += 32;
 		}
-		y++;
+		i++;
+		hight += 32;
 	}
 }
 
@@ -74,6 +79,8 @@ void	map_drawer(t_info *info)
 {
 	int		hight;
 	int		width;
+	int		i;
+	int		j;
 
 	fill_map(info, info->map, FLOOR);
 	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
@@ -85,6 +92,13 @@ void	map_drawer(t_info *info)
 	put_img(info, TOP_RIGHT, width, 0);
 	put_img(info, BOTTOM_LEFT, 0, hight);
 	put_img(info, BOTTOM_RIGHT, width, hight);
+	i = ((info->width / 2) * 32) - 64;
+	j = i + 128;
+	while (i <= j)
+	{
+		put_img(info, BG_SCOORE, i, 0);
+		i += 32;
+	}
 	show_clicks(info);
 }
 

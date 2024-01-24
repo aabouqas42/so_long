@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:28:06 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/10 23:25:38 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:34:53 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int		same;
 
 	if (!haystack && !len)
-		return (0);
+		return (NULL);
 	if (!*needle)
 		return ((char *)haystack);
 	needlen = ft_strlen(needle);
@@ -35,5 +35,5 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 		len--;
 	}
-	return (0);
+	return (NULL);
 }

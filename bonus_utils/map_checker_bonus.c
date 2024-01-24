@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 12:01:26 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:06:03 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	name_checker(t_info *info)
 {
-	int	size;
+	int		size;
+	char	*name;
 
 	size = ft_strlen((const char *)info->map_path);
-	if (ft_strcmp(ft_strnstr(info->map_path, ".ber", size), ".ber") != 0)
+	name = ft_strnstr(info->map_path, ".ber", size);
+	if (name == NULL || ft_strcmp(name, ".ber") != 0)
 	{
 		ft_printf("Error :\nInvalid file name :(\n");
 		exit (-1);
@@ -113,5 +115,5 @@ void	flood_fill(t_info *info)
 	check (info, map, info->plyr.px, info->plyr.py);
 	mem_free(map);
 	if (info->valid != (info->coins + 1))
-		show_msg(info, "Error :\ninvalid path :(\n", -1);
+		show_msg(info, "Error :\nInvalid path :(\n", -1);
 }
