@@ -6,7 +6,7 @@
 #    By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/21 21:11:34 by aabouqas          #+#    #+#              #
-#    Updated: 2024/01/24 18:21:56 by aabouqas         ###   ########.fr        #
+#    Updated: 2024/01/24 21:05:25 by aabouqas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ BONUS_SRC = so_long_bonus.c bonus_utils/map_checker_bonus.c \
 	bonus_utils/map_utils_bonus.c bonus_utils/animator_bonus.c bonus_utils/coin_animator_bonus.c
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
-HEADER_BONUS = so_long_bonus/so_long_bonus.h
+HEADER_BONUS = bonus_utils/so_long_bonus.h
 
 all: $(NAME)
 

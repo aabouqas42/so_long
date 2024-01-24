@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/24 19:11:14 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:08:50 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <errno.h>
 # include <mlx.h>
-
 
 # define FLOOR "textures/floor.xpm"
 # define TOP_LEFT "textures/top_left.xpm"
