@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/25 10:40:20 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:26:21 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@
 # define PLYR_TO_TOP "textures/player_to_top.xpm"
 # define PLYR_TO_BOTTOM "textures/player_to_down.xpm"
 # define BG_SCOORE "textures/bg_scoore.xpm"
+
+typedef struct s_v
+{
+	int	x;
+	int	y;
+	int	c;
+	int	e;
+	int	p;
+}	t_v;
 
 typedef struct s_player
 {
@@ -105,5 +114,7 @@ int		coin_flipper(t_info *info);
 void	coin_animator(t_info *info, int time);
 char	*get_frame(int time);
 void	launch_window(t_info *info, char *title);
+void	check_objects(t_info *info, char **map);
+void	check_invalid_chars(t_info *info);
 
 #endif

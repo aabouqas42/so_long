@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 16:54:09 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:33:44 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,10 @@ void	check_wall(t_info *info)
 
 void	map_checker(t_info *info)
 {
-	static int	player;
-	static int	coins;
-	static int	exit;
-	size_t		i;
-	size_t		j;
-
-	i = 0;
+	check_invalid_chars(info);
+	check_objects(info, info->map);
 	check_wall(info);
-	while (info->map[i])
-	{
-		j = 0;
-		while (info->map[i][j])
-		{
-			if (ft_strchr("01ECP", info->map[i][j]) == 0)
-				show_msg(info, "Error :\nAllowed chars: \"01ECP\" :(\n", -1);
-			player += (info->map[i][j] == 'P');
-			coins += (info->map[i][j] == 'C');
-			exit += (info->map[i][j] == 'E');
-			j++;
-		}
-		i++;
-	}
-	if ((player > 1 || player == 0) || (exit == 0 || exit > 1) || coins == 0)
-		show_msg(info,
-			"Error :\nThe map must be contains 1P & 1E & C >= 1 :(\n", -1);
+	flood_fill(info);
 }
 
 void	check(t_info *info, char **map, int start_x, int start_y)

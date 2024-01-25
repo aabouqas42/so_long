@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 11:45:48 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:23:10 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,51 @@ char	**copy_map(t_info *info)
 	}
 	close (fd);
 	return (map);
+}
+
+void	check_objects(t_info *info, char **map)
+{
+	size_t	x;
+	size_t	y;
+	int		p;
+	int		c;
+	int		e;
+
+	p = 0;
+	c = 0;
+	e = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			p += (map[y][x] == 'P');
+			c += (map[y][x] == 'C');
+			e += (map[y][x] == 'E');
+			x++;
+		}
+		y++;
+	}
+	if ((p > 1 || p == 0) || (e > 1 || e == 0) || c == 0)
+		show_msg(info, "Error :\nMap requires 1P, 1E, & C >= 1. :(\n", -1);
+}
+
+void	check_invalid_chars(t_info *info)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (info->map[y])
+	{
+		x = 0;
+		while (info->map[y][x])
+		{
+			if (ft_strchr("01ECP", info->map[y][x]) == 0)
+				show_msg(info, "Error :\nAllowed chars: \"01ECP\" :(\n", -1);
+			x++;
+		}
+		y++;
+	}
 }

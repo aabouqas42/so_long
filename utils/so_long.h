@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/25 10:27:57 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:23:31 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ void	anim_to_right(t_info *info, void *_char, int *x, int *y);
 void	anim_to_left(t_info *info, void *_char, int *x, int *y);
 void	_init(t_info *info);
 void	launch_window(t_info *info, char *app_name);
+void	check_objects(t_info *info, char **map);
+void	check_invalid_chars(t_info *info);
 
 #endif
