@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/25 22:13:35 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/26 00:10:12 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
-# include <stdio.h>
-# include <errno.h>
 # include <mlx.h>
 
 # define FLOOR "textures/floor.xpm"
