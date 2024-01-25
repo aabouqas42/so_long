@@ -6,29 +6,31 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:02:08 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/24 18:27:53 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:43:29 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus_utils/so_long_bonus.h"
 
-void	fill_map(t_info *info, char **map, void *textures)
+void	fill_map(t_info *info)
 {
-	static int	x;
-	static int	y;
+	int	x;
+	int	y;
 
-	while (map[y])
+	x = 0;
+	y = 0;
+	while (info->map[y])
 	{
 		x = 0;
-		while (map[y][x] && map[y][x] != '\n')
+		while (info->map[y][x] && info->map[y][x] != '\n')
 		{
-			put_img(info, textures, x * 32, y * 32);
-			if (map[y][x] == '1' && (y > 0
+			put_img(info, FLOOR, x * 32, y * 32);
+			if (info->map[y][x] == '1' && (y > 0
 				&& y < info->hight) && (x > 0 && x < info->width))
 				put_img(info, "textures/wall.xpm", x * 32, y * 32);
-			if (map[y][x] == 'C')
+			if (info->map[y][x] == 'C')
 				put_img(info, "textures/coins.xpm", x * 32, y * 32);
-			if (map[y][x] == 'E')
+			if (info->map[y][x] == 'E')
 				put_img(info, CLOSED, x * 32, y * 32);
 			x++;
 		}
@@ -75,7 +77,7 @@ void	map_drawer(t_info *info)
 	int		hight;
 	int		width;
 
-	fill_map(info, info->map, FLOOR);
+	fill_map(info);
 	put_img(info, PLYR_TO_BOTTOM, info->plyr.px * 32, info->plyr.py * 32);
 	fill_top_bottom(info);
 	fill_right_left(info);
@@ -105,8 +107,7 @@ int	main(int ac, char *av[])
 	get_map_data(&info);
 	map_checker(&info);
 	flood_fill(&info);
-	info.mlx_ptr = mlx_init();
-	info.window = mlx_new_window(info.mlx_ptr, info.win_w, info.win_h, av[0]);
+	launch_window(&info, av[0]);
 	map_drawer(&info);
 	mlx_hook(info.window, 2, 0, click_manager, &info);
 	mlx_hook(info.window, 17, 0, destroy, &info);

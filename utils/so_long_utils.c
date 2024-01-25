@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:22:01 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/23 09:19:57 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:40:30 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,15 @@ void	_init(t_info *info)
 	info->coins = 0;
 	info->valid = 0;
 	info->counter = 0;
+}
+
+void	launch_window(t_info *info, char *title)
+{
+	info->mlx_ptr = mlx_init();
+	if (info->mlx_ptr == NULL)
+		show_msg(info, "Error :\nUnexpected error :(\n", -1);
+	info->window = mlx_new_window(
+			info->mlx_ptr, info->win_w, info->win_h, title);
+	if (info->window == NULL)
+		show_msg(info, "Error :\nUnexpected error :(\n", -1);
 }

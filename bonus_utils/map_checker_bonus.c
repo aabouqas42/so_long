@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/24 18:06:03 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:08:38 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	map_checker(t_info *info)
 		}
 		i++;
 	}
-	if ((player > 1 || player == 0) || (exit == 0 || exit > 1) || coins == 0)
+	if ((player > 1 || player == 0) || (exit > 1 || exit == 0) || coins == 0)
 		show_msg(info,
 			"Error :\nThe map must be contains 1P & 1E & C >= 1 :(\n", -1);
 }

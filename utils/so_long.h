@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:36:09 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/24 21:08:19 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:27:57 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**copy_map(t_info *info);
 int		open_file(t_info *info);
 void	*get_img(char *textuer_path, t_info *info);
 void	put_img(t_info *info, void *textuer_path, int x, int y);
-void	fill_map(t_info *info, char **map, void *textures);
+void	fill_map(t_info *info);
 void	get_map_data(t_info *info);
 void	map_drawer(t_info *info);
 void	flood_fill(t_info *info);
@@ -84,5 +84,6 @@ void	anim_to_bottom(t_info *info, void *_char, int *x, int *y);
 void	anim_to_right(t_info *info, void *_char, int *x, int *y);
 void	anim_to_left(t_info *info, void *_char, int *x, int *y);
 void	_init(t_info *info);
+void	launch_window(t_info *info, char *app_name);
 
 #endif
