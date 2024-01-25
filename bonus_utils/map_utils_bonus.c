@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:36 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/01/25 15:24:46 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:14:23 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	check_objects(t_info *info, char **map)
 	if ((p > 1 || p == 0) || (e > 1 || e == 0) || c == 0)
 		show_msg(info, "Error :\nMap requires 1P, 1E, & C >= 1. :(\n", -1);
 }
+
 void	check_invalid_chars(t_info *info)
 {
 	size_t	x;

@@ -6,7 +6,7 @@
 #    By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/21 21:11:34 by aabouqas          #+#    #+#              #
-#    Updated: 2024/01/24 21:05:25 by aabouqas         ###   ########.fr        #
+#    Updated: 2024/01/25 21:37:01 by aabouqas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,16 @@ HEADER_BONUS = bonus_utils/so_long_bonus.h
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): utils/so_long.h $(OBJ) $(LIBFT) 
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 utils/%.o: utils/%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 bonus: $(BONUS)
 
-$(BONUS): $(LIBFT) $(BONUS_OBJ)
+$(BONUS): $(BONUS_OBJ) $(LIBFT) 
 	$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(BONUS)
 
 bonus_utils/%.o: bonus_utils/%.c $(HEADER_BONUS)
