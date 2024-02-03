@@ -5,7 +5,7 @@
 
 # Setup :
 ## 1: Clone this repo
-``` https://github.com/aabouqas42/so_long.git ```
+```bash https://github.com/aabouqas42/so_long.git ```
 ## 2: Enter to `so_long` folder
 ## 3: Extract The executable file :
   - *Run* `make` *or* `make bonus` *for advanced features.*
